@@ -1,4 +1,5 @@
 import {
+  data,
   isRouteErrorResponse,
   Links,
   Meta,
@@ -9,6 +10,7 @@ import {
 
 import type { Route } from './+types/root';
 import './app.css';
+import { ENV } from './lib/env';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -50,6 +52,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return <Outlet />;
+}
+
+export async function loader() { 
+  return data({
+    auth_url: ENV.BACKEND_URL
+  })
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
