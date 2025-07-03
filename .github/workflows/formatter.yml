@@ -6,7 +6,6 @@ on:
 jobs:
   test:
     name: Run Tests
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Install pnpm
@@ -20,7 +19,5 @@ jobs:
           cache: 'pnpm'
       - name: Install Dependencies
         run: pnpm install
-      - name: Generate Prisma Client
-        run: pnpx prisma generate
       - name: Run Test
         run: pnpm test-all
