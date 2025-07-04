@@ -26,7 +26,7 @@ const buttonVariants = cva(
         sm: 'h-9 rounded-md gap-1.5 px-6',
         lg: 'h-11 rounded-md px-10',
         icon: 'size-9',
-      },    
+      },
     },
     defaultVariants: {
       variant: 'default',
@@ -39,7 +39,7 @@ function Button({
   className,
   variant,
   size,
-  asChild = false,  
+  asChild = false,
   ...props
 }: React.ComponentProps<'button'> &
   VariantProps<typeof buttonVariants> & {

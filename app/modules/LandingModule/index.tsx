@@ -1,24 +1,24 @@
-'use client'
-import { motion } from 'framer-motion'
-import { useNavigate } from 'react-router'
-import { Button } from '../../components/ui/button'
-import { childVariants, containerVariants } from './components/stagger'
-import { Link } from 'react-scroll'
-import { ArrowDown, LogIn } from 'lucide-react'
+'use client';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router';
+import { Button } from '../../components/ui/button';
+import { childVariants, containerVariants } from './components/stagger';
+import { Link } from 'react-scroll';
+import { ArrowDown, LogIn } from 'lucide-react';
 
 export const LandingModule = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const landingText =
     'Website Resmi Pemilihan Calon Ketua dan Wakil Ketua OSIS SMA Negeri 1 Sumbawa Besar Periode 2025/2026'.split(
       ' '
-    )
+    );
 
   return (
     <>
       <section
         id="home"
-        className="w-full h-screen relative overflow-hidden flex justify-center items-center font-manrope"
+        className="w-full h-screen relative flex justify-center items-center font-manrope overflow-hidden"
       >
         <div className="gap-4 z-20 flex flex-col items-center">
           <motion.div
@@ -103,7 +103,7 @@ export const LandingModule = () => {
                   //   return
                   // }
 
-                  navigate('/login')
+                  navigate('/login');
                 }}
               >
                 <LogIn className="w-5" />
@@ -114,5 +114,5 @@ export const LandingModule = () => {
         </div>
       </section>
     </>
-  )
-}
+  );
+};

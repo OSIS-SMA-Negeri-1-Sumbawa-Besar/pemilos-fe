@@ -1,4 +1,4 @@
-import type { Variants } from 'framer-motion'
+import type { Variants } from 'framer-motion';
 
 const containerVariants: Variants = {
   hidden: {
@@ -10,7 +10,7 @@ const containerVariants: Variants = {
       staggerChildren: 0.1, // Stagger delay for child animations
     },
   },
-}
+};
 
 const childVariants: Variants = {
   hidden: {
@@ -27,6 +27,6 @@ const childVariants: Variants = {
       damping: 20,
     },
   },
-}
+};
 
-export { containerVariants, childVariants }
+export { containerVariants, childVariants };
