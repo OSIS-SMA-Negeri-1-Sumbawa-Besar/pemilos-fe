@@ -1,9 +1,9 @@
 'use client';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router';
-import { Button } from './button';
 import { LogIn } from 'lucide-react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import { Button } from './button';
 
 export const NavbarItem = ({
   name,
@@ -46,7 +46,7 @@ export const NavbarItem = ({
 };
 
 export const Navbar = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   return (
