@@ -6,11 +6,11 @@ import { Instagram, Youtube } from 'lucide-react'
 import { useRef } from 'react'
 import { scroller } from 'react-scroll'
 import { NavbarItem } from './navbar'
-import { useNavigate } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 
 export const BottomBar = () => {
   const navigate = useNavigate();
-  const pathname = window.location.pathname
+  const pathname = useLocation().pathname
 
   const ref = useRef(null)
   const inView = useInView(ref, { once: false })

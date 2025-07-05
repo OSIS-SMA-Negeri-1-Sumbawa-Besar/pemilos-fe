@@ -75,7 +75,7 @@ export const Navbar = () => {
               name="Visi Misi"
               index={2}
               onClick={() => {
-                scroller.scrollTo('visimisi', {
+                scroller.scrollTo('visi-misi', {
                   duration: 500,
                   delay: 0,
                   smooth: 'easeInOut',
@@ -86,14 +86,22 @@ export const Navbar = () => {
               name="Tata Cara"
               index={3}
               onClick={() => {
-                navigate('/tatacara');
+                scroller.scrollTo('tata-cara', {
+                  duration: 500,
+                  delay: 0,
+                  smooth: 'easeInOut',
+                })
               }}
             />
             <NavbarItem
               name="FAQ"
               index={4}
               onClick={() => {
-                navigate('/faq');
+                scroller.scrollTo('faq', {
+                  duration: 500,
+                  delay: 0,
+                  smooth: 'easeInOut',
+                })
               }}
             />
           </div>
@@ -139,7 +147,7 @@ export const Navbar = () => {
               name="Visi Misi"
               index={2}
               onClick={() => {
-                scroller.scrollTo('visimisi', {
+                scroller.scrollTo('visi-misi', {
                   duration: 500,
                   delay: 0,
                   smooth: 'easeInOut',
@@ -150,14 +158,22 @@ export const Navbar = () => {
               name="Tata Cara"
               index={3}
               onClick={() => {
-                navigate('/tatacara');
+                scroller.scrollTo('tata-cara', {
+                  duration: 500,
+                  delay: 0,
+                  smooth: 'easeInOut',
+                })
               }}
             />
             <NavbarItem
               name="FAQ"
               index={4}
               onClick={() => {
-                navigate('/faq');
+                scroller.scrollTo('faq', {
+                  duration: 500,
+                  delay: 0,
+                  smooth: 'easeInOut',
+                })
               }}
             />
           </div>

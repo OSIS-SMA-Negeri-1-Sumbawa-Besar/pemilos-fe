@@ -54,7 +54,7 @@ export const FAQSection = () => {
             FAQItems.map((item, index) => {
               return (
                 <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger>{item.question}</AccordionTrigger>
+                  <AccordionTrigger className='bg-[#8774E5] hover:bg-[#6149D4] text-white [&>svg]:text-white rounded-2xl px-5 font-bold cursor-pointer hover:no-underline'>{item.question}</AccordionTrigger>
                   <AccordionContent>{item.answer}</AccordionContent>
                 </AccordionItem>
               )

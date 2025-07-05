@@ -114,7 +114,7 @@ const paslonData: paslonProps[] = [
 
 export const VisiMisi = () => {
   return (
-    <Element name="visimisi">
+    <Element name="visi-misi">
       <AnimatedSection className="font-manrope flex flex-col gap-10 my-10 relative">
         <AnimatedTitle>
           Yuk, Cek <span className='text-primary'>Visi Misi</span><br />
