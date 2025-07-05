@@ -131,8 +131,8 @@ export const VisiMisi = () => {
                 </AccordionTrigger>
                 <AccordionContent className='bg-primary-foreground p-5 flex gap-5'>
                   <div className='flex'>
-                    <img src={'/osis-1.png'} alt="paslon-1" width={200} height={300} className='max-h-[300px]' />
-                    <img src={'/osis-2.png'} alt="paslon-1" width={200} height={300} className='max-h-[300px]' />
+                    <img src={'/osis-1.png'} alt="paslon-1" width={200} height={250} className='max-h-[250px]' />
+                    <img src={'/osis-2.png'} alt="paslon-1" width={200} height={250} className='max-h-[250px]' />
                   </div>
                   <div key={index} className='flex flex-col gap-3'>
                     <div>
