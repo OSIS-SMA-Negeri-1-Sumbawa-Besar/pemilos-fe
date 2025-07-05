@@ -4,6 +4,7 @@ import { LogIn } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Button } from './button';
+import { scroller } from 'react-scroll';
 
 export const NavbarItem = ({
   name,
@@ -50,10 +51,10 @@ export const Navbar = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className='"w-full px-10 md:px-20 top-5 md:top-10 sticky'>
+    <nav className='"w-full z-30 px-10 md:px-20 top-5 md:top-10 sticky'>
       <AnimatePresence>
         <div
-          className={`absolute p-10 w-fit lg:hidden bg-white right-10 md:right-20 top-24 shadow-md rounded-md flex flex-col font-manrope ${open ? 'flex' : 'hidden'}`}
+          className={`absolute p-10w-fit lg:hidden bg-white right-10 md:right-20 top-24 shadow-md rounded-md flex flex-col font-manrope ${open ? 'flex' : 'hidden'}`}
         >
           <div className="gap-2 flex flex-col font-semibold text-black-secondary">
             <NavbarItem
@@ -74,21 +75,33 @@ export const Navbar = () => {
               name="Visi Misi"
               index={2}
               onClick={() => {
-                navigate('/visimisi');
+                scroller.scrollTo('visi-misi', {
+                  duration: 500,
+                  delay: 0,
+                  smooth: 'easeInOut',
+                })
               }}
             />
             <NavbarItem
               name="Tata Cara"
               index={3}
               onClick={() => {
-                navigate('/tatacara');
+                scroller.scrollTo('tata-cara', {
+                  duration: 500,
+                  delay: 0,
+                  smooth: 'easeInOut',
+                })
               }}
             />
             <NavbarItem
               name="FAQ"
               index={4}
               onClick={() => {
-                navigate('/faq');
+                scroller.scrollTo('faq', {
+                  duration: 500,
+                  delay: 0,
+                  smooth: 'easeInOut',
+                })
               }}
             />
           </div>
@@ -134,21 +147,33 @@ export const Navbar = () => {
               name="Visi Misi"
               index={2}
               onClick={() => {
-                navigate('/visimisi');
+                scroller.scrollTo('visi-misi', {
+                  duration: 500,
+                  delay: 0,
+                  smooth: 'easeInOut',
+                })
               }}
             />
             <NavbarItem
               name="Tata Cara"
               index={3}
               onClick={() => {
-                navigate('/tatacara');
+                scroller.scrollTo('tata-cara', {
+                  duration: 500,
+                  delay: 0,
+                  smooth: 'easeInOut',
+                })
               }}
             />
             <NavbarItem
               name="FAQ"
               index={4}
               onClick={() => {
-                navigate('/faq');
+                scroller.scrollTo('faq', {
+                  duration: 500,
+                  delay: 0,
+                  smooth: 'easeInOut',
+                })
               }}
             />
           </div>
