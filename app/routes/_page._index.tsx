@@ -1,8 +1,10 @@
 import type { ActionFunctionArgs, LoaderFunctionArgs } from 'react-router';
 import { Background } from '~/components/elements/Background/background';
+import { BottomBar } from '~/components/ui/footer';
 import { Navbar } from '~/components/ui/navbar';
 import { LandingModule } from '~/modules/LandingModule';
 import { LandingAction } from '~/modules/LandingModule/action';
+import { FAQSection } from '~/modules/LandingModule/faq';
 import { LandingLoader } from '~/modules/LandingModule/loader';
 import { TataCaraModule } from '~/modules/LandingModule/tata-cara';
 import { VisiMisi } from '~/modules/LandingModule/visi-misi';
@@ -24,7 +26,9 @@ export default function LandingPage() {
         <LandingModule />
         <VisiMisi />
         <TataCaraModule />
+        <FAQSection />
       </main>
+      <BottomBar />
     </div>
   );
 }

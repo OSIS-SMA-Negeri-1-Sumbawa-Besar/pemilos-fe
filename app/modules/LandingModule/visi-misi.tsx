@@ -121,8 +121,12 @@ export const VisiMisi = () => {
           Masing-masing <span className='text-primary'>Calon</span>
         </AnimatedTitle>
         <div>
-          {paslonData.map((item, index) => (
-            <Accordion type='single' defaultValue='item-1' collapsible>
+          <Accordion
+            type="single"
+            collapsible
+            defaultValue='item-1'
+          >
+            {paslonData.map((item, index) => (
               <AccordionItem value={`item-${[item.nomorUrut]}`} className='bg-primary rounded-md my-3'>
                 <AccordionTrigger className='px-5 [&>svg]:hidden hover:no-underline'>
                   <div className='bg-white p-5 text-lg font-semibold rounded-full w-10 h-10 flex items-center justify-center'>
@@ -151,8 +155,8 @@ export const VisiMisi = () => {
                         <AccordionContent className='bg-primary-foreground flex gap-5'>
                           <ul>
                             {item.misi.map((misi, index) => (
-                              <li 
-                                key={index} 
+                              <li
+                                key={index}
                                 className='bg-primary mt-2 p-5 text-primary-foreground rounded-md'
                               >{misi}</li>
                             ))}
@@ -166,8 +170,8 @@ export const VisiMisi = () => {
                         <AccordionContent className='bg-primary-foreground flex gap-5'>
                           <ul>
                             {item.proker.map((proker, index) => (
-                              <li 
-                                key={index} 
+                              <li
+                                key={index}
                                 className='bg-primary mt-2 p-5 text-primary-foreground rounded-md'
                               >
                                 <h5 className='font-semibold'>{proker.title}</h5>
@@ -181,8 +185,8 @@ export const VisiMisi = () => {
                   </div>
                 </AccordionContent>
               </AccordionItem>
-            </Accordion>
-          ))}
+            ))}
+          </Accordion>
         </div>
       </AnimatedSection>
     </Element >
