@@ -1,14 +1,14 @@
-'use client'
-import { AnimatedTitle } from '~/components/ui/animated-title'
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
-import { Element } from 'react-scroll'
-import { containerVariants } from './components/stagger'
+'use client';
+import { AnimatedTitle } from '~/components/ui/animated-title';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { Element } from 'react-scroll';
+import { containerVariants } from './components/stagger';
 
 /* eslint-disable react/react-in-jsx-scope */
 interface tatacaraProps {
-  cara: string
-  number: number
+  cara: string;
+  number: number;
 }
 
 const tatacaraItems: tatacaraProps[] = [
@@ -36,11 +36,11 @@ const tatacaraItems: tatacaraProps[] = [
     number: 6,
     cara: 'Celupkan jari ke tinta cair yang di sediakan oleh panitia sebagai tanda kamu telah melakukan voting.',
   },
-]
+];
 
 export const TataCaraModule = () => {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: false })
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: false });
 
   return (
     <Element name="tata-cara">
@@ -83,11 +83,11 @@ export const TataCaraModule = () => {
                     {item.cara}
                   </h3>
                 </motion.div>
-              )
+              );
             })}
           </motion.div>
         </motion.div>
       </main>
     </Element>
-  )
-}
+  );
+};

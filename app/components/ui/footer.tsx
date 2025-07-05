@@ -1,19 +1,19 @@
 /* eslint-disable react/react-in-jsx-scope */
-'use client'
+'use client';
 // import useToken from '~/custom-hook/useToken'
-import { motion, useInView } from 'framer-motion'
-import { Instagram, Youtube } from 'lucide-react'
-import { useRef } from 'react'
-import { scroller } from 'react-scroll'
-import { NavbarItem } from './navbar'
-import { useLocation, useNavigate } from 'react-router'
+import { motion, useInView } from 'framer-motion';
+import { Instagram, Youtube } from 'lucide-react';
+import { useRef } from 'react';
+import { scroller } from 'react-scroll';
+import { NavbarItem } from './navbar';
+import { useLocation, useNavigate } from 'react-router';
 
 export const BottomBar = () => {
   const navigate = useNavigate();
-  const pathname = useLocation().pathname
+  const pathname = useLocation().pathname;
 
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: false })
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: false });
 
   return (
     <motion.section
@@ -62,9 +62,9 @@ export const BottomBar = () => {
                 scroller.scrollTo('home', {
                   smooth: true,
                   offset: -150,
-                })
+                });
               } else {
-                navigate('/')
+                navigate('/');
               }
             }}
             index={0}
@@ -89,12 +89,12 @@ export const BottomBar = () => {
             name="Visi Misi"
             onClick={() => {
               if (pathname === '/vote') {
-                navigate('/')
+                navigate('/');
               } else {
                 scroller.scrollTo('visi-misi', {
                   smooth: true,
                   offset: -50,
-                })
+                });
               }
             }}
             index={2}
@@ -103,12 +103,12 @@ export const BottomBar = () => {
             name="Tata Cara"
             onClick={() => {
               if (pathname === '/vote') {
-                navigate('/')
+                navigate('/');
               } else {
                 scroller.scrollTo('tata-cara', {
                   smooth: true,
                   offset: -150,
-                })
+                });
               }
             }}
             index={3}
@@ -117,12 +117,12 @@ export const BottomBar = () => {
             name="FAQ"
             onClick={() => {
               if (pathname === '/vote') {
-                navigate('/')
+                navigate('/');
               } else {
                 scroller.scrollTo('faq', {
                   smooth: true,
                   offset: -150,
-                })
+                });
               }
             }}
             index={4}
@@ -135,5 +135,5 @@ export const BottomBar = () => {
         </div>
       </main>
     </motion.section>
-  )
-}
+  );
+};

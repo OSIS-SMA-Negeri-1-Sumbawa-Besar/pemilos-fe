@@ -3,18 +3,22 @@ import { Element } from 'react-scroll';
 import { Accordion } from '~/components/ui/accordion';
 import { AnimatedSection } from '~/components/ui/animated-section';
 import { AnimatedTitle } from '~/components/ui/animated-title';
-import { AccordionContent, AccordionItem, AccordionTrigger } from '~/components/ui/accordion';
+import {
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '~/components/ui/accordion';
 
 interface paslonProps {
-  nomorUrut: number
-  nama: string
-  image: string
-  visi: string
-  misi: string[]
+  nomorUrut: number;
+  nama: string;
+  image: string;
+  visi: string;
+  misi: string[];
   proker: {
-    title: string
-    content: string
-  }[]
+    title: string;
+    content: string;
+  }[];
 }
 
 const paslonData: paslonProps[] = [
@@ -110,71 +114,90 @@ const paslonData: paslonProps[] = [
       },
     ],
   },
-]
+];
 
 export const VisiMisi = () => {
   return (
     <Element name="visi-misi">
       <AnimatedSection className="font-manrope flex flex-col gap-10 my-10 relative">
         <AnimatedTitle>
-          Yuk, Cek <span className='text-primary'>Visi Misi</span><br />
-          Masing-masing <span className='text-primary'>Calon</span>
+          Yuk, Cek <span className="text-primary">Visi Misi</span>
+          <br />
+          Masing-masing <span className="text-primary">Calon</span>
         </AnimatedTitle>
         <div>
-          <Accordion
-            type="single"
-            collapsible
-            defaultValue='item-1'
-          >
+          <Accordion type="single" collapsible defaultValue="item-1">
             {paslonData.map((item, index) => (
-              <AccordionItem value={`item-${[item.nomorUrut]}`} className='bg-primary rounded-md my-3'>
-                <AccordionTrigger className='px-5 [&>svg]:hidden hover:no-underline'>
-                  <div className='bg-white p-5 text-lg font-semibold rounded-full w-10 h-10 flex items-center justify-center'>
+              <AccordionItem
+                value={`item-${[item.nomorUrut]}`}
+                className="bg-primary rounded-md my-3"
+              >
+                <AccordionTrigger className="px-5 [&>svg]:hidden hover:no-underline">
+                  <div className="bg-white p-5 text-lg font-semibold rounded-full w-10 h-10 flex items-center justify-center">
                     {item.nomorUrut}
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className='bg-primary-foreground p-5 flex gap-5'>
-                  <div className='flex'>
-                    <img src={'/osis-1.png'} alt="paslon-1" width={200} height={250} className='max-h-[250px]' />
-                    <img src={'/osis-2.png'} alt="paslon-1" width={200} height={250} className='max-h-[250px]' />
+                <AccordionContent className="bg-primary-foreground p-5 flex gap-5">
+                  <div className="flex">
+                    <img
+                      src={'/osis-1.png'}
+                      alt="paslon-1"
+                      width={200}
+                      height={250}
+                      className="max-h-[250px]"
+                    />
+                    <img
+                      src={'/osis-2.png'}
+                      alt="paslon-1"
+                      width={200}
+                      height={250}
+                      className="max-h-[250px]"
+                    />
                   </div>
-                  <div key={index} className='flex flex-col gap-3'>
+                  <div key={index} className="flex flex-col gap-3">
                     <div>
-                      <h3 className='text-3xl font-bold'>{item.nama}</h3>
-                      <p className='mt-2 text-gray-600'>Calon Ketua dan Wakil Ketua Osis Nomor Urut {item.nomorUrut}</p>
+                      <h3 className="text-3xl font-bold">{item.nama}</h3>
+                      <p className="mt-2 text-gray-600">
+                        Calon Ketua dan Wakil Ketua Osis Nomor Urut{' '}
+                        {item.nomorUrut}
+                      </p>
                     </div>
-                    <div className='max-w-3xl'>
-                      <h4 className='text-xl font-bold'>VISI</h4>
-                      <p className='mt-2'>{item.visi}</p>
+                    <div className="max-w-3xl">
+                      <h4 className="text-xl font-bold">VISI</h4>
+                      <p className="mt-2">{item.visi}</p>
                     </div>
-                    <Accordion type='single' className='max-w-3xl' collapsible>
+                    <Accordion type="single" className="max-w-3xl" collapsible>
                       <AccordionItem value={`item-1`}>
-                        <AccordionTrigger className='hover:no-underline'>
-                          <h4 className='text-lg font-bold'>MISI</h4>
+                        <AccordionTrigger className="hover:no-underline">
+                          <h4 className="text-lg font-bold">MISI</h4>
                         </AccordionTrigger>
-                        <AccordionContent className='bg-primary-foreground flex gap-5'>
+                        <AccordionContent className="bg-primary-foreground flex gap-5">
                           <ul>
                             {item.misi.map((misi, index) => (
                               <li
                                 key={index}
-                                className='bg-primary mt-2 p-5 text-primary-foreground rounded-md'
-                              >{misi}</li>
+                                className="bg-primary mt-2 p-5 text-primary-foreground rounded-md"
+                              >
+                                {misi}
+                              </li>
                             ))}
                           </ul>
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value={`item-2`}>
-                        <AccordionTrigger className='hover:no-underline'>
-                          <h4 className='text-lg font-bold'>PROKER</h4>
+                        <AccordionTrigger className="hover:no-underline">
+                          <h4 className="text-lg font-bold">PROKER</h4>
                         </AccordionTrigger>
-                        <AccordionContent className='bg-primary-foreground flex gap-5'>
+                        <AccordionContent className="bg-primary-foreground flex gap-5">
                           <ul>
                             {item.proker.map((proker, index) => (
                               <li
                                 key={index}
-                                className='bg-primary mt-2 p-5 text-primary-foreground rounded-md'
+                                className="bg-primary mt-2 p-5 text-primary-foreground rounded-md"
                               >
-                                <h5 className='font-semibold'>{proker.title}</h5>
+                                <h5 className="font-semibold">
+                                  {proker.title}
+                                </h5>
                                 <p>{proker.content}</p>
                               </li>
                             ))}
@@ -189,6 +212,6 @@ export const VisiMisi = () => {
           </Accordion>
         </div>
       </AnimatedSection>
-    </Element >
-  )
-}
+    </Element>
+  );
+};

@@ -1,13 +1,13 @@
-'use client'
+'use client';
 /* eslint-disable react/prop-types */
 /* eslint-disable react/react-in-jsx-scope */
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 interface AnimatedSectionProps {
-  id?: string
-  children: React.ReactNode[] | React.ReactNode
-  className?: string
+  id?: string;
+  children: React.ReactNode[] | React.ReactNode;
+  className?: string;
 }
 
 export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
@@ -15,8 +15,8 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   className,
   ...props
 }) => {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: false })
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: false });
 
   return (
     <motion.section
@@ -37,5 +37,5 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
     >
       {children}
     </motion.section>
-  )
-}
+  );
+};

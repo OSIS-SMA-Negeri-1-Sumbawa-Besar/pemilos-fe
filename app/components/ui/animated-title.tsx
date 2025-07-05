@@ -1,11 +1,11 @@
-'use client'
+'use client';
 /* eslint-disable react/react-in-jsx-scope */
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 export const AnimatedTitle = ({ children }: { children: React.ReactNode }) => {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: false })
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: false });
 
   return (
     <motion.h1
@@ -24,5 +24,5 @@ export const AnimatedTitle = ({ children }: { children: React.ReactNode }) => {
     >
       {children}
     </motion.h1>
-  )
-}
+  );
+};

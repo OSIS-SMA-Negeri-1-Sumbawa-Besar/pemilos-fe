@@ -79,7 +79,7 @@ export const Navbar = () => {
                   duration: 500,
                   delay: 0,
                   smooth: 'easeInOut',
-                })
+                });
               }}
             />
             <NavbarItem
@@ -90,7 +90,7 @@ export const Navbar = () => {
                   duration: 500,
                   delay: 0,
                   smooth: 'easeInOut',
-                })
+                });
               }}
             />
             <NavbarItem
@@ -101,7 +101,7 @@ export const Navbar = () => {
                   duration: 500,
                   delay: 0,
                   smooth: 'easeInOut',
-                })
+                });
               }}
             />
           </div>
@@ -151,7 +151,7 @@ export const Navbar = () => {
                   duration: 500,
                   delay: 0,
                   smooth: 'easeInOut',
-                })
+                });
               }}
             />
             <NavbarItem
@@ -162,7 +162,7 @@ export const Navbar = () => {
                   duration: 500,
                   delay: 0,
                   smooth: 'easeInOut',
-                })
+                });
               }}
             />
             <NavbarItem
@@ -173,7 +173,7 @@ export const Navbar = () => {
                   duration: 500,
                   delay: 0,
                   smooth: 'easeInOut',
-                })
+                });
               }}
             />
           </div>

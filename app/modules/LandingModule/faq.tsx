@@ -1,23 +1,24 @@
-'use client'
+'use client';
 import {
   Accordion,
   AccordionTrigger,
   AccordionContent,
   AccordionItem,
-} from '~/components/ui/accordion'
-import { AnimatedSection } from '~/components/ui/animated-section'
-import { AnimatedTitle } from '~/components/ui/animated-title'
+} from '~/components/ui/accordion';
+import { AnimatedSection } from '~/components/ui/animated-section';
+import { AnimatedTitle } from '~/components/ui/animated-title';
 
 interface FAQProps {
-  question: string
-  answer: string
+  question: string;
+  answer: string;
 }
 
 const FAQItems: FAQProps[] = [
   {
     question:
       'Data apa saja yang dibutuhkan saat mengisi suara pada PEMILOS SMANIKA tahun ini?',
-    answer: 'Data yang perlu di isi untuk login PEMILOS SMANIKA tahun ini adalah username menggunakan NISN dan Password menggunakan NIS.',
+    answer:
+      'Data yang perlu di isi untuk login PEMILOS SMANIKA tahun ini adalah username menggunakan NISN dan Password menggunakan NIS.',
   },
   {
     question:
@@ -31,7 +32,7 @@ const FAQItems: FAQProps[] = [
     answer:
       'Jika anda tidak dapat menghadiri sesi pemilihan secara langsung, maka anda akan dianggap golput atau tidak memilih.',
   },
-]
+];
 
 /* eslint-disable react/react-in-jsx-scope */
 export const FAQSection = () => {
@@ -50,18 +51,18 @@ export const FAQSection = () => {
           collapsible
           className="w-full flex flex-col gap-4"
         >
-          {
-            FAQItems.map((item, index) => {
-              return (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className='bg-[#8774E5] hover:bg-[#6149D4] text-white [&>svg]:text-white rounded-2xl px-5 font-bold cursor-pointer hover:no-underline'>{item.question}</AccordionTrigger>
-                  <AccordionContent>{item.answer}</AccordionContent>
-                </AccordionItem>
-              )
-            })
-          }
+          {FAQItems.map((item, index) => {
+            return (
+              <AccordionItem key={index} value={`item-${index}`}>
+                <AccordionTrigger className="bg-[#8774E5] hover:bg-[#6149D4] text-white [&>svg]:text-white rounded-2xl px-5 font-bold cursor-pointer hover:no-underline">
+                  {item.question}
+                </AccordionTrigger>
+                <AccordionContent>{item.answer}</AccordionContent>
+              </AccordionItem>
+            );
+          })}
         </Accordion>
       </AnimatedSection>
     </section>
-  )
-}
+  );
+};
