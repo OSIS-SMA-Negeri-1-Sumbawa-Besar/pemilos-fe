@@ -128,12 +128,9 @@ export const VisiMisi = () => {
         <div>
           <Accordion type="single" collapsible defaultValue="item-1">
             {paslonData.map((item, index) => (
-              <AccordionItem
-                value={`item-${[item.nomorUrut]}`}
-                className="bg-primary rounded-md my-3"
-              >
-                <AccordionTrigger className="px-5 [&>svg]:hidden hover:no-underline">
-                  <div className="bg-white p-5 text-lg font-semibold rounded-full w-10 h-10 flex items-center justify-center">
+              <AccordionItem key={index} value={`item-${[item.nomorUrut]}`} className='bg-primary rounded-md my-3'>
+                <AccordionTrigger className='px-5 [&>svg]:hidden hover:no-underline'>
+                  <div className='bg-white p-5 text-lg font-semibold rounded-full w-10 h-10 flex items-center justify-center'>
                     {item.nomorUrut}
                   </div>
                 </AccordionTrigger>
@@ -154,7 +151,7 @@ export const VisiMisi = () => {
                       className="max-h-[250px]"
                     />
                   </div>
-                  <div key={index} className="flex flex-col gap-3">
+                  <div className='flex flex-col gap-3'>
                     <div>
                       <h3 className="text-3xl font-bold">{item.nama}</h3>
                       <p className="mt-2 text-gray-600">

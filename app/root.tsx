@@ -11,6 +11,7 @@ import {
 import type { Route } from './+types/root';
 import './app.css';
 import { ENV } from './lib/env';
+import { Toaster } from './components/ui/sonner';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -48,6 +49,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
           className="fixed z-[-1] opacity-[3%] h-screen top w-full"
         />
         {children}
+        <Toaster 
+          position='bottom-right'
+        />
         <ScrollRestoration />
         <Scripts />
       </body>
