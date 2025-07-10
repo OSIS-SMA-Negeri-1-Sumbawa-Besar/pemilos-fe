@@ -57,7 +57,7 @@ export const FAQSection = () => {
                 <AccordionTrigger className="bg-[#8774E5] hover:bg-[#6149D4] text-white [&>svg]:text-white rounded-2xl px-5 font-bold cursor-pointer hover:no-underline">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent>{item.answer}</AccordionContent>
+                <AccordionContent className='px-5 py-2 no-underline'>{item.answer}</AccordionContent>
               </AccordionItem>
             );
           })}

@@ -56,7 +56,7 @@ export const LandingModule = () => {
               className="w-[70%] sm:w-[60%] md:w-[50%] lg:w-[40%]"
             />
           </motion.div>
-          <div className="font-manrope font-semibold w-[50%] text-center">
+          <div className="font-manrope font-semibold w-[70%] md:w-[50%] text-center">
             {landingText.map((el, i) => (
               <motion.span
                 initial={{ opacity: 0 }}

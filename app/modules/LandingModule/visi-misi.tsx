@@ -134,26 +134,26 @@ export const VisiMisi = () => {
                     {item.nomorUrut}
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="bg-primary-foreground p-5 flex gap-5">
-                  <div className="flex">
+                <AccordionContent className="bg-primary-foreground p-5 flex flex-col lg:flex-row gap-5">
+                  <div className="flex justify-center">
                     <img
                       src={'/osis-1.png'}
                       alt="paslon-1"
                       width={200}
                       height={250}
-                      className="max-h-[250px]"
+                      className="max-h-[250px] scale-75 md:scale-100"
                     />
                     <img
                       src={'/osis-2.png'}
                       alt="paslon-1"
                       width={200}
                       height={250}
-                      className="max-h-[250px]"
+                      className="max-h-[250px] scale-75 md:scale-100"
                     />
                   </div>
                   <div className='flex flex-col gap-3'>
                     <div>
-                      <h3 className="text-3xl font-bold">{item.nama}</h3>
+                      <h3 className="text-2xl md:text-3xl font-bold">{item.nama}</h3>
                       <p className="mt-2 text-gray-600">
                         Calon Ketua dan Wakil Ketua Osis Nomor Urut{' '}
                         {item.nomorUrut}
