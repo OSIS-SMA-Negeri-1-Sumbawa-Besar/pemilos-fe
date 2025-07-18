@@ -134,21 +134,21 @@ export const VisiMisi = () => {
                     {item.nomorUrut}
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="bg-primary-foreground p-5 flex flex-col lg:flex-row gap-5">
-                  <div className="flex justify-center">
+                <AccordionContent className="bg-primary-foreground p-5 flex flex-col lg:flex-row gap-4">
+                  <div className="flex justify-center  overflow-hidden">
                     <img
                       src={'/osis-1.png'}
                       alt="paslon-1"
                       width={200}
                       height={250}
-                      className="max-h-[250px] scale-75 md:scale-100"
+                      className="max-h-[250px] scale-75 md:scale-100 object-contain"
                     />
                     <img
                       src={'/osis-2.png'}
                       alt="paslon-1"
                       width={200}
                       height={250}
-                      className="max-h-[250px] scale-75 md:scale-100"
+                      className="max-h-[250px] scale-75 md:scale-100 object-contain"
                     />
                   </div>
                   <div className='flex flex-col gap-3'>

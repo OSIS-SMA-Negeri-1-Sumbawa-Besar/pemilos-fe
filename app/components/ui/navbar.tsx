@@ -1,11 +1,12 @@
-'use client';
-import { AnimatePresence, motion } from 'framer-motion';
-import { LogIn, Menu } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router';
-import { Button } from './button';
+import { motion } from 'framer-motion';
+import { LogIn, LogOut, Menu } from 'lucide-react';
+import { useState } from 'react';
+import { useLocation, useNavigate, useRevalidator } from 'react-router';
 import { scroller } from 'react-scroll';
 import { toast } from 'sonner';
+import { getAuthClient } from '~/lib/auth';
+import type { Session } from '~/lib/auth.server';
+import { Button } from './button';
 import { Popover, PopoverContent, PopoverTrigger } from './popover';
 
 export const NavbarItem = ({
@@ -28,7 +29,7 @@ export const NavbarItem = ({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5, delay: index * 0.2 }}
-      className="group transition duration-300 cursor-pointer list-none"
+      className="group transition duration-300 cursor-pointer list-none text-sm"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.9 }}
       onAnimationComplete={handleTextAnimationComplete}
@@ -48,21 +49,17 @@ export const NavbarItem = ({
   );
 };
 
-export const Navbar = () => {
+export const Navbar = ({ user }: { user: Session }) => {
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
-  const pathName = useLocation().pathname;
-
-  const [loading, setLoading] = useState(false);
+  const location = useLocation();
+  const revalidator = useRevalidator();
+  const authClient = getAuthClient();
 
   const handleLogout = () => {
-    setLoading(true);
-    toast({
-      title: 'Logout',
-      description: 'Sedang Logout ...',
-      variant: 'default',
-    } as any);
+    authClient.signOut();
 
+    toast.success('Berhasil logout')
+    revalidator.revalidate();
   }
 
   return (
@@ -93,12 +90,17 @@ export const Navbar = () => {
                 navigate('/');
               }}
             />
-            {/* <NavbarItem
-              name="Vote"
-              index={1}
-              onClick={() => {
-                navigate('/vote')
-              }} /> */}
+            {/* Vote Item */}
+            {
+              user &&
+              <NavbarItem
+                name="Vote"
+                index={1}
+                onClick={() => {
+                  navigate('/vote');
+                }}
+              />
+            }
             <NavbarItem
               name="Visi Misi"
               index={2}
@@ -133,16 +135,41 @@ export const Navbar = () => {
               }}
             />
           </div>
-          <Button
-            className="hover:scale-[1.05] transition duration-200 ease-in-out text-sm font-semibold"
-            variant={'default'}
-            onClick={() => {
-              navigate('/login');
-            }}
-          >
-            <LogIn className="w-4" />
-            Login
-          </Button>
+          {
+            (location.pathname !== '/login' && !user) &&
+            <Button
+              className="hover:scale-[1.05] transition duration-200 ease-in-out text-sm font-semibold"
+              variant={'default'}
+              onClick={() => {
+                navigate('/login');
+              }}
+            >
+              <LogIn className="w-4" />
+              Login
+            </Button>
+          }
+
+          {
+            user &&
+            <div className="flex items-center gap-4">
+              <div className='flex  flex-col text-right'>
+                <p className="text-sm font-semibold mr-2">
+                  {user.name}
+                </p>
+                <p className="text-xs text-gray-500">
+                  {user.email}
+                </p>
+              </div>
+              <Button
+                className="hover:scale-[1.05] transition duration-200 ease-in-out text-sm font-semibold"
+                variant={'default'}
+                onClick={handleLogout}
+              >
+                <LogOut />
+                Logout
+              </Button>
+            </div>
+          }
         </div>
 
         <Popover>
@@ -150,62 +177,62 @@ export const Navbar = () => {
             <Menu className="w-8 h-8" />
           </PopoverTrigger>
           <PopoverContent className='max-w-52 p-10 mr-10 mt-7 md:mr-20 md:p-14 md:max-w-none'>
-              <div className="gap-3 flex flex-col font-semibold text-black-secondary font-manrope">
-                <NavbarItem
-                  name="Home"
-                  index={0}
-                  onClick={() => {
-                    navigate('/');
-                  }}
-                />
-                {/* <NavbarItem
+            <div className="gap-3 flex flex-col font-semibold text-black-secondary font-manrope">
+              <NavbarItem
+                name="Home"
+                index={0}
+                onClick={() => {
+                  navigate('/');
+                }}
+              />
+              {/* <NavbarItem
                   name="Vote"
                   index={1}
                   onClick={() => {
                     navigate('/vote');
                   }}
                 /> */}
-                <NavbarItem
-                  name="Visi Misi"
-                  index={2}
-                  onClick={() => {
-                    scroller.scrollTo('visi-misi', {
-                      duration: 500,
-                      delay: 0,
-                      smooth: 'easeInOut',
-                    });
-                  }}
-                />
-                <NavbarItem
-                  name="Tata Cara"
-                  index={3}
-                  onClick={() => {
-                    scroller.scrollTo('tata-cara', {
-                      duration: 500,
-                      delay: 0,
-                      smooth: 'easeInOut',
-                    });
-                  }}
-                />
-                <NavbarItem
-                  name="FAQ"
-                  index={4}
-                  onClick={() => {
-                    scroller.scrollTo('faq', {
-                      duration: 500,
-                      delay: 0,
-                      smooth: 'easeInOut',
-                    });
-                  }}
-                />
-              </div>
-              <Button 
-                variant={'default'}
-                className='mt-3'
-              >
-                <LogIn className="w-4" />
-                Login
-              </Button>
+              <NavbarItem
+                name="Visi Misi"
+                index={2}
+                onClick={() => {
+                  scroller.scrollTo('visi-misi', {
+                    duration: 500,
+                    delay: 0,
+                    smooth: 'easeInOut',
+                  });
+                }}
+              />
+              <NavbarItem
+                name="Tata Cara"
+                index={3}
+                onClick={() => {
+                  scroller.scrollTo('tata-cara', {
+                    duration: 500,
+                    delay: 0,
+                    smooth: 'easeInOut',
+                  });
+                }}
+              />
+              <NavbarItem
+                name="FAQ"
+                index={4}
+                onClick={() => {
+                  scroller.scrollTo('faq', {
+                    duration: 500,
+                    delay: 0,
+                    smooth: 'easeInOut',
+                  });
+                }}
+              />
+            </div>
+            <Button
+              variant={'default'}
+              className='mt-3'
+            >
+              <LogIn className="w-4" />
+              Login
+            </Button>
           </PopoverContent>
         </Popover>
       </motion.nav>

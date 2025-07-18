@@ -3,7 +3,7 @@ import { AnimatedTitle } from '~/components/ui/animated-title';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Element } from 'react-scroll';
-import { containerVariants } from './components/stagger';
+import { containerVariants } from '../components/stagger';
 
 /* eslint-disable react/react-in-jsx-scope */
 interface tatacaraProps {

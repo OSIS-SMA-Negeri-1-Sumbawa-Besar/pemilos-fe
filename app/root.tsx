@@ -6,12 +6,13 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  type LoaderFunctionArgs,
 } from 'react-router';
 
 import type { Route } from './+types/root';
 import './app.css';
-import { ENV } from './lib/env';
 import { Toaster } from './components/ui/sonner';
+import { ENV } from './lib/env';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -63,7 +64,7 @@ export default function App() {
   return <Outlet />;
 }
 
-export async function loader() {
+export async function loader(args: LoaderFunctionArgs) {
   return data({
     auth_url: ENV.BACKEND_URL,
   });

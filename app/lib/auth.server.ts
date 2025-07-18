@@ -1,5 +1,12 @@
 import { createAuthClient } from 'better-auth/react';
+
 import { ENV } from './env';
+
+export type Session = {
+  id: string;
+  email: string;
+  name: string;
+}
 
 export const getAuthServer = () => {
   const auth_server = createAuthClient({
@@ -7,4 +14,19 @@ export const getAuthServer = () => {
   });
 
   return auth_server;
+};
+
+export const getUserFromRequest = async (request: Request) => {
+  const authClient = getAuthServer();
+  const cookie = request.headers.get('Cookie') || '';
+
+  const session = await authClient.getSession({
+    fetchOptions: {
+      headers: {
+        Cookie: cookie,
+      },
+    },
+  });
+
+  return session?.data?.user as Session | null;
 };

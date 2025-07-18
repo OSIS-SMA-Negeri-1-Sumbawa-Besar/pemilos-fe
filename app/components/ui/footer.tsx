@@ -1,12 +1,9 @@
-/* eslint-disable react/react-in-jsx-scope */
-'use client';
-// import useToken from '~/custom-hook/useToken'
 import { motion, useInView } from 'framer-motion';
 import { Instagram, Youtube } from 'lucide-react';
 import { useRef } from 'react';
+import { useLocation, useNavigate } from 'react-router';
 import { scroller } from 'react-scroll';
 import { NavbarItem } from './navbar';
-import { useLocation, useNavigate } from 'react-router';
 
 export const BottomBar = () => {
   const navigate = useNavigate();
@@ -129,7 +126,7 @@ export const BottomBar = () => {
           />
         </div>
         <div className="text-center">
-          <h4 className="text-sm mt-2 md:mt-0 md:text-base">
+          <h4 className="text-sm">
             &copy; 2025 SMANIKA COMPUTER CLUB, All right reserved.
           </h4>
         </div>

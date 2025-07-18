@@ -1,118 +1,15 @@
-'use client';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router';
-import { Button } from '../../components/ui/button';
-import { childVariants, containerVariants } from './components/stagger';
-import { Link } from 'react-scroll';
-import { ArrowDown, LogIn } from 'lucide-react';
+import { FAQSection } from "./sections/FAQ";
+import { Hero } from "./sections/Hero";
+import { TataCaraModule } from "./sections/TataCara";
+import { VisiMisi } from "./sections/VisiMisi";
 
 export const LandingModule = () => {
-  const navigate = useNavigate();
-
-  const landingText =
-    'Website Resmi Pemilihan Calon Ketua dan Wakil Ketua OSIS SMA Negeri 1 Sumbawa Besar Periode 2025/2026'.split(
-      ' '
-    );
-
   return (
-    <>
-      <section
-        id="home"
-        className="w-full h-screen relative flex justify-center items-center font-manrope overflow-hidden"
-      >
-        <div className="gap-4 z-20 flex flex-col items-center">
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{
-              type: 'spring',
-              stiffness: 260,
-              damping: 20,
-            }}
-          >
-            <img
-              src={'/logo-smanika-osis.png'}
-              alt="SMANIKA OSIS Logo"
-              width={100}
-              height={200}
-            />
-          </motion.div>
-          <motion.div
-            className="w-full flex justify-center items-center"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            whileHover={{ scale: 1.1 }}
-            transition={{
-              type: 'spring',
-              stiffness: 260,
-              damping: 20,
-            }}
-          >
-            <img
-              src={'/smanika-memilih.png'}
-              alt="SMANIKA Memilih"
-              width={400}
-              height={200}
-              className="w-[70%] sm:w-[60%] md:w-[50%] lg:w-[40%]"
-            />
-          </motion.div>
-          <div className="font-manrope font-semibold w-[70%] md:w-[50%] text-center">
-            {landingText.map((el, i) => (
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{
-                  duration: 0.25,
-                  delay: i / 10,
-                }}
-                key={i}
-              >
-                {el}{' '}
-              </motion.span>
-            ))}
-          </div>
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <Link
-              activeClass="active"
-              to={'visi-misi'}
-              spy={true}
-              smooth={true}
-              offset={-30}
-              duration={1000}
-            >
-              <motion.div variants={childVariants}>
-                <Button variant={'outline'}>
-                  <ArrowDown className="w-5" />
-                  <span>Lihat Calon</span>
-                </Button>
-              </motion.div>
-            </Link>
-            <motion.div variants={childVariants}>
-              <Button
-                className="w-full"
-                onClick={() => {
-                  // const token = localStorage.getItem('token')
-
-                  // if (token) {
-                  //   navigate('/vote')
-                  //   return
-                  // }
-
-                  navigate('/login');
-                }}
-              >
-                <LogIn className="w-5" />
-                <span>Login</span>
-              </Button>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-    </>
+    <main className="px-10 md:px-20 flex flex-col gap-10 overflow-hidden">
+      <Hero />
+      <VisiMisi />
+      <TataCaraModule />
+      <FAQSection />
+    </main>
   );
 };
