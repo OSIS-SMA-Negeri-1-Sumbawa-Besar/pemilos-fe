@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
-export default defineConfig({
+export default defineConfig(() => ({
   plugins: [reactRouter(), tsconfigPaths(), tailwindcss()],
   build: {
     cssMinify: true,
@@ -13,4 +13,11 @@ export default defineConfig({
     host: '0.0.0.0',
     port: parseInt(process.env.PORT || '3000'),
   },
-});
+  ...(process.env.NODE_ENV === 'production' && {
+    resolve: {
+      alias: {
+        'react-dom/server': 'react-dom/server.node',
+      },
+    },
+  }),
+}))
