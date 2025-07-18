@@ -1,13 +1,14 @@
 'use client';
+import { useLoaderData } from 'react-router';
 import { Element } from 'react-scroll';
-import { Accordion } from '~/components/ui/accordion';
+import {
+  Accordion, AccordionContent,
+  AccordionItem,
+  AccordionTrigger
+} from '~/components/ui/accordion';
 import { AnimatedSection } from '~/components/ui/animated-section';
 import { AnimatedTitle } from '~/components/ui/animated-title';
-import {
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '~/components/ui/accordion';
+import type { Candidate } from '~/types';
 
 interface paslonProps {
   nomorUrut: number;
@@ -117,6 +118,9 @@ const paslonData: paslonProps[] = [
 ];
 
 export const VisiMisi = () => {
+  const { candidates } = useLoaderData<{ candidates: Candidate[] }>();
+  console.log(candidates);
+  
   return (
     <Element name="visi-misi">
       <AnimatedSection className="font-manrope flex flex-col gap-10 my-10 relative">
