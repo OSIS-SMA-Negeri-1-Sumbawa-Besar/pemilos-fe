@@ -28,12 +28,6 @@ RUN bun install --frozen-lockfile
 COPY . .
 # entrypoint.sh is also part of your application code, so it's here now at /app/entrypoint.sh in the build stage.
 
-# Copy Prisma schema
-COPY prisma ./prisma
-
-# Generate Prisma client
-RUN bun prisma generate
-
 # Build application
 RUN bun run build
 
@@ -45,11 +39,7 @@ FROM base
 
 COPY --from=build /app /app
 
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
-
 RUN apt-get update -y && apt-get install -y openssl
 
 EXPOSE 3000
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD [ "bun", "run", "start" ]
