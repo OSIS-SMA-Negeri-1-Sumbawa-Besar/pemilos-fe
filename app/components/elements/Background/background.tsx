@@ -1,10 +1,21 @@
 'use client';
 // import { ExpirationLogout } from '@/custom-hook/expiration-logout'
 import { motion } from 'framer-motion';
+import { useLocation } from 'react-router';
 /* eslint-disable react/react-in-jsx-scope */
 export const Background = () => {
+  const pathName = useLocation().pathname;
+
+  const handleVisible = () => {
+    if (pathName === '/vote') {
+      return 'hidden';
+    } else {
+      return 'block';
+    }
+  }
+
   return (
-    <div className="w-full h-screen absolute z-0">
+    <div className={`w-full h-screen absolute z-0 ${handleVisible()}`}>
       <motion.div
         initial={{ x: -200, y: 200 }}
         animate={{ x: 0, y: 0 }}
