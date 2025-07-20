@@ -1,28 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '~/components/ui/card';
-
-interface Candidate {
-  candidateNumber: number;
-  candidateName: string;
-  voteCount: number;
-}
-
-const CandidateItems: Candidate[] = [
-  {
-    candidateNumber: 1,
-    candidateName: 'Zulfikar & Embun',
-    voteCount: 0,
-  },
-  {
-    candidateNumber: 2,
-    candidateName: 'Arvel & Icha',
-    voteCount: 0,
-  }
-]
+import { useLoaderData } from 'react-router';
+import { ca } from 'zod/v4/locales';
+import type { Candidate } from '~/types';
 
 export const VoteModule = () => {
-  
+  const { candidates }: { candidates: Candidate[] } = useLoaderData();
 
   return (
     <section
@@ -56,13 +40,13 @@ export const VoteModule = () => {
           Klik kandidat yang ingin dipilih
         </motion.h3>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10'>
-          {CandidateItems.map((item) => {
+          {candidates.map((candidate, index) => {
             return (
-              <Card>
+              <Card key={index}>
                 <CardContent>
                   <div className='flex flex-col justify-center gap-5'>
                     <h1 className="font-semibold text-lg bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center">
-                      {item.candidateNumber}
+                      {index + 1}
                     </h1>
                     <div className='flex gap-2 w-full justify-center items-end'>
                       <img
@@ -81,8 +65,8 @@ export const VoteModule = () => {
                       />
                     </div>
                     <div className='flex flex-col gap-2 w-full justify-center items-center'>
-                      <h2 className="text-2xl font-bold">{item.candidateName}</h2>
-                      <p className='text-sm text-slate-600 text-center'>Pasangan Calon Ketua dan Wakil Ketua Osis Nomor Urut {item.candidateNumber}</p>
+                      <h2 className="text-2xl font-bold">{candidate.presidentName} & {candidate.vicePresidentName}</h2>
+                      <p className='text-sm text-slate-600 text-center'>Pasangan Calon Ketua dan Wakil Ketua Osis Nomor Urut {index + 1}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -90,7 +74,6 @@ export const VoteModule = () => {
             )
           })}
         </div>
-
       </div>
     </section>
   );

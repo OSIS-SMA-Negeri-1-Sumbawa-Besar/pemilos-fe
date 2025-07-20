@@ -32,7 +32,7 @@ export function LoginModule() {
   const onSubmit = async (values: LoginFormValues) => {
 
     const { data, error } = await authClient.signIn.email({
-      email: `${values.username}@gmail.com`,
+      email: values.username,
       password: values.password,
       callbackURL: '/'
     })
@@ -115,6 +115,7 @@ export function LoginModule() {
                   type="submit"
                   size={'lg'}
                   className="w-full"
+                  onClick={() => form.handleSubmit(onSubmit)()}
                 >
                   <LogIn className="w-4" />
                   <span>Login</span>
