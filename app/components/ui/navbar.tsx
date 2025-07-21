@@ -13,10 +13,12 @@ export const NavbarItem = ({
   name,
   onClick,
   index,
+  isActive = false,
 }: {
   name: string;
   onClick: () => void;
   index: number;
+  isActive?: boolean;
 }) => {
   const [underlineVisible, setUnderlineVisible] = useState(false);
 
@@ -29,7 +31,7 @@ export const NavbarItem = ({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5, delay: index * 0.2 }}
-      className="group transition duration-300 cursor-pointer list-none text-sm"
+      className={`group transition duration-300 cursor-pointer list-none text-sm ${isActive ? 'font-bold text-primary' : ''}`}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.9 }}
       onAnimationComplete={handleTextAnimationComplete}
@@ -42,7 +44,11 @@ export const NavbarItem = ({
           animate={{ scaleX: 1 }}
           exit={{ scaleX: 0 }}
           transition={{ duration: 0.5 }}
-          className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-secondary"
+          className={`block transition-all duration-500 h-0.5 bg-secondary ${
+            isActive 
+              ? 'max-w-full' 
+              : 'max-w-0 group-hover:max-w-full'
+          }`}
         />
       )}
     </motion.li>
@@ -86,6 +92,7 @@ export const Navbar = ({ user }: { user: Session }) => {
             <NavbarItem
               name="Home"
               index={0}
+              isActive={location.pathname === '/'}
               onClick={() => {
                 navigate('/');
               }}
@@ -96,6 +103,7 @@ export const Navbar = ({ user }: { user: Session }) => {
               <NavbarItem
                 name="Vote"
                 index={1}
+                isActive={location.pathname.startsWith('/vote')}
                 onClick={() => {
                   navigate('/vote');
                 }}
@@ -104,6 +112,7 @@ export const Navbar = ({ user }: { user: Session }) => {
             <NavbarItem
               name="Visi Misi"
               index={2}
+              isActive={false} // This is for scrolling, not navigation
               onClick={() => {
                 scroller.scrollTo('visi-misi', {
                   duration: 500,
@@ -115,6 +124,7 @@ export const Navbar = ({ user }: { user: Session }) => {
             <NavbarItem
               name="Tata Cara"
               index={3}
+              isActive={false} // This is for scrolling, not navigation
               onClick={() => {
                 scroller.scrollTo('tata-cara', {
                   duration: 500,
@@ -126,6 +136,7 @@ export const Navbar = ({ user }: { user: Session }) => {
             <NavbarItem
               name="FAQ"
               index={4}
+              isActive={false} // This is for scrolling, not navigation
               onClick={() => {
                 scroller.scrollTo('faq', {
                   duration: 500,
@@ -157,7 +168,7 @@ export const Navbar = ({ user }: { user: Session }) => {
                   {user.name}
                 </p>
                 <p className="text-xs text-gray-500">
-                  {user.email}
+                  {user.email.replaceAll("@gmail.com", "")}
                 </p>
               </div>
               <Button
@@ -181,20 +192,27 @@ export const Navbar = ({ user }: { user: Session }) => {
               <NavbarItem
                 name="Home"
                 index={0}
+                isActive={location.pathname === '/'}
                 onClick={() => {
                   navigate('/');
                 }}
               />
-              {/* <NavbarItem
+              {/* Vote Item */}
+              {
+                user &&
+                <NavbarItem
                   name="Vote"
                   index={1}
+                  isActive={location.pathname.startsWith('/vote')}
                   onClick={() => {
                     navigate('/vote');
                   }}
-                /> */}
+                />
+              }
               <NavbarItem
                 name="Visi Misi"
                 index={2}
+                isActive={false} // This is for scrolling, not navigation
                 onClick={() => {
                   scroller.scrollTo('visi-misi', {
                     duration: 500,
@@ -206,6 +224,7 @@ export const Navbar = ({ user }: { user: Session }) => {
               <NavbarItem
                 name="Tata Cara"
                 index={3}
+                isActive={false} // This is for scrolling, not navigation
                 onClick={() => {
                   scroller.scrollTo('tata-cara', {
                     duration: 500,
@@ -217,6 +236,7 @@ export const Navbar = ({ user }: { user: Session }) => {
               <NavbarItem
                 name="FAQ"
                 index={4}
+                isActive={false} // This is for scrolling, not navigation
                 onClick={() => {
                   scroller.scrollTo('faq', {
                     duration: 500,

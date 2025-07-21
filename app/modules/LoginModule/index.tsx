@@ -1,10 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { motion } from 'framer-motion'
 import { LogIn } from 'lucide-react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
-import { Background } from '~/components/elements/Background/background'
 import { Button } from '~/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/components/ui/form'
 import { Input } from '~/components/ui/input'
@@ -19,6 +19,8 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>
 
 export function LoginModule() {
+  const [loading, setLoading] = useState(false);
+
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -30,20 +32,20 @@ export function LoginModule() {
   const authClient = getAuthClient();
 
   const onSubmit = async (values: LoginFormValues) => {
-
+    setLoading(true);
     const { data, error } = await authClient.signIn.email({
-      email: values.username,
+      email: `${values.username}@gmail.com`,
       password: values.password,
       callbackURL: '/'
     })
 
+    setLoading(false);
     if (error) {
       return toast.error(error.message || 'Login failed')
     }
   }
   return (
     <section className="font-manrope w-full h-screen relative overflow-hidden flex items-center justify-center">
-      <Background />
       <div className="flex flex-col gap-2 items-center z-20">
         <motion.div
           initial={{ scale: 0, rotate: 0 }}
@@ -116,6 +118,7 @@ export function LoginModule() {
                   size={'lg'}
                   className="w-full"
                   onClick={() => form.handleSubmit(onSubmit)()}
+                  disabled={loading}
                 >
                   <LogIn className="w-4" />
                   <span>Login</span>

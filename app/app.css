@@ -122,3 +122,8 @@
 @theme {
   --font-manrope: 'Manrope', sans-serif;
 }
+
+
+html {
+  scroll-behavior: smooth;
+}

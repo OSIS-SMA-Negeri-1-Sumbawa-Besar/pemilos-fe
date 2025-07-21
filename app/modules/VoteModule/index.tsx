@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardContent } from '~/components/ui/card';
 import { useLoaderData } from 'react-router';
-import { ca } from 'zod/v4/locales';
+import { Card, CardContent } from '~/components/ui/card';
 import type { Candidate } from '~/types';
 
 export const VoteModule = () => {
@@ -22,7 +20,7 @@ export const VoteModule = () => {
             stiffness: 260,
             damping: 20,
           }}
-          className="font-extrabold font-manrope text-black-primary text-3xl md:text-6xl text-center leading-normal"
+          className="font-extrabold font-manrope text-black-primary text-3xl md:text-6xl text-center leading-tight"
         >
           Pilih sesuai <br />{' '}
           <b className="text-primary">Hati Nuranimu</b>, Yak!
@@ -42,7 +40,7 @@ export const VoteModule = () => {
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10'>
           {candidates.map((candidate, index) => {
             return (
-              <Card key={index}>
+              <Card key={index} className='cursor-pointer hover:scale-105 duration-300'>
                 <CardContent>
                   <div className='flex flex-col justify-center gap-5'>
                     <h1 className="font-semibold text-lg bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center">
