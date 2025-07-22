@@ -13,7 +13,7 @@ import { getAuthClient } from '~/lib/auth'
 // Login schema validation
 const loginSchema = z.object({
   username: z.string().min(1, 'Username is required'),
-  password: z.string().min(1, 'Password is required').min(5, 'Password must be at least 6 characters'),
+  password: z.string().min(1, 'Password is required').min(5, 'Password must be at least 5 characters'),
 })
 
 type LoginFormValues = z.infer<typeof loginSchema>
