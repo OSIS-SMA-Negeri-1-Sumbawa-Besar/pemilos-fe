@@ -62,6 +62,7 @@ export interface Candidate {
     vision: string;
     mission: string[];
     Vote: Vote[];
+    number: number;
 }
 
 export interface Vote {
