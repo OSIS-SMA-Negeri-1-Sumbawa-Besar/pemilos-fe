@@ -33,11 +33,14 @@ export function LoginModule() {
 
   const onSubmit = async (values: LoginFormValues) => {
     setLoading(true);
-    const { data, error } = await authClient.signIn.email({
+    const { error } = await authClient.signIn.email({
       email: `${values.username}@gmail.com`,
       password: values.password,
       callbackURL: '/'
     })
+
+    // Revoke Other Sessions
+    await authClient.revokeOtherSessions()
 
     setLoading(false);
     if (error) {
