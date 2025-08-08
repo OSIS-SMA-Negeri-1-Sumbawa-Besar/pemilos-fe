@@ -13,7 +13,7 @@ import type { Candidate } from '~/types';
 export const VisiMisi = () => {
   const { candidates } = useLoaderData<{ candidates: Candidate[] }>();
   console.log(candidates);
-  
+
   return (
     <Element name="visi-misi">
       <AnimatedSection className="font-manrope flex flex-col gap-10 my-10 relative">
@@ -31,23 +31,14 @@ export const VisiMisi = () => {
                     {item.number}
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="bg-primary-foreground p-5 flex flex-col lg:flex-row gap-4">
-                  <div className="flex justify-center items-end overflow-hidden w-full max-h-[250px]">
-                    <img
-                      src={'/osis-1.png'}
-                      alt="paslon-1"
-                      width={200}
-                      height={250}
-                      className="max-h-[250px] scale-75 md:scale-100 object-contain"
-                    />
-                    <img
-                      src={'/osis-2.png'}
-                      alt="paslon-1"
-                      width={200}
-                      height={250}
-                      className="max-h-[250px] scale-75 md:scale-100 object-contain"
-                    />
-                  </div>
+                <AccordionContent className="bg-primary-foreground py-20 lg:p-10 px-10 flex flex-col items-center lg:items-start lg:flex-row gap-14 md:gap-20 lg:gap-10">
+                  <img
+                    src={`/paslon${item.number}.png`}
+                    alt="paslon-1"
+                    width={400}
+                    height={200}
+                    className="scale-[2.5] md:scale-175 lg:scale-100 text-center w-1/2 max-h-[300px]"
+                  />
                   <div className='flex flex-col gap-3 w-full'>
                     <div>
                       <h3 className="text-2xl md:text-3xl font-bold">{item.presidentName} & {item.vicePresidentName}</h3>
