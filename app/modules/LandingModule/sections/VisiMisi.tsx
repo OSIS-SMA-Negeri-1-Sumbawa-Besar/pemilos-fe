@@ -75,15 +75,15 @@ export const VisiMisi = () => {
                         </AccordionTrigger>
                         <AccordionContent className="bg-primary-foreground flex gap-5">
                           <ul className='w-full'>
-                            {item.mission.map((proker, index) => (
+                            {item.proker.map((proker, index) => (
                               <li
                                 key={index}
                                 className="bg-primary mt-2 p-5 text-primary-foreground rounded-md"
                               >
                                 <h5 className="font-semibold">
-                                  {proker}
+                                  {proker.prokerTitle}
                                 </h5>
-                                <p>{proker}</p>
+                                <p>{proker.prokerDescription}</p>
                               </li>
                             ))}
                           </ul>

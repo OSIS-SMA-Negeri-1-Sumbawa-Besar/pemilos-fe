@@ -114,25 +114,18 @@ export const VoteModule = () => {
                             <h1 className="font-semibold text-lg bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center">
                               {index + 1}
                             </h1>
-                            <div className='flex gap-2 w-full justify-center items-end'>
+                            <div className='flex flex-col items-center justify-center'>
                               <img
-                                src={'/osis-1.png'}
+                                src={`/paslon${candidate.number}.png`}
                                 alt="paslon-1"
-                                width={200}
-                                height={250}
+                                width={400}
+                                height={200}
                                 className="max-h-[250px] scale-75 md:scale-100 object-contain"
                               />
-                              <img
-                                src={'/osis-2.png'}
-                                alt="paslon-1"
-                                width={200}
-                                height={250}
-                                className="max-h-[250px] scale-75 md:scale-100 object-contain hidden md:block"
-                              />
-                            </div>
-                            <div className='flex flex-col gap-2 w-full justify-center items-center'>
-                              <h2 className="text-2xl font-bold">{candidate.presidentName} & {candidate.vicePresidentName}</h2>
-                              <p className='text-sm text-slate-600 text-center'>Pasangan Calon Ketua dan Wakil Ketua Osis Nomor Urut {candidate.number}</p>
+                              <div className='flex flex-col gap-2 w-full justify-center items-center'>
+                                <h2 className="text-2xl font-bold text-center">{candidate.presidentName} & {candidate.vicePresidentName}</h2>
+                                <p className='text-sm text-slate-600 text-center'>Pasangan Calon Ketua dan Wakil Ketua Osis Nomor Urut {candidate.number}</p>
+                              </div>
                             </div>
                           </div>
                         </CardContent>

@@ -55,12 +55,19 @@ export interface Verification {
     updatedAt?: Date;
 }
 
+export interface Proker {
+    id: number;
+    prokerTitle: string;
+    prokerDescription: string;
+}
+
 export interface Candidate {
     code: string;
     presidentName: string;
     vicePresidentName: string;
     vision: string;
     mission: string[];
+    proker: Proker[];
     Vote: Vote[];
     number: number;
 }
