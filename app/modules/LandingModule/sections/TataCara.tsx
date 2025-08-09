@@ -14,7 +14,7 @@ interface tatacaraProps {
 const tatacaraItems: tatacaraProps[] = [
   {
     number: 1,
-    cara: 'Datang ke lokasi (lapangan tenis) sesuai jadwal yang diberikan oleh panitia.',
+    cara: 'Datang ke lokasi (Bawah pohon beringin depan ruang guru) sesuai jadwal yang diberikan oleh panitia.',
   },
   {
     number: 2,
