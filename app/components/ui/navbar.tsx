@@ -84,6 +84,7 @@ export const NavbarItem = ({
 };
 
 export const Navbar = ({ user }: { user: Session }) => {
+  
   const navigate = useNavigate();
   const location = useLocation();
   const revalidator = useRevalidator();
@@ -203,7 +204,7 @@ export const Navbar = ({ user }: { user: Session }) => {
             />
             {/* Vote Item */}
             {
-              (user && !user.hasVoted) &&
+              (user?.email && !user?.hasVoted) &&
               <NavbarItem
                 name="Vote"
                 index={1}
@@ -282,7 +283,7 @@ export const Navbar = ({ user }: { user: Session }) => {
           }
 
           {
-            user &&
+            user?.email &&
             <motion.div
               key={`user-info-${isVisible}`}
               className="flex items-center gap-4"
@@ -301,7 +302,7 @@ export const Navbar = ({ user }: { user: Session }) => {
                   {user.name}
                 </p>
                 <p className="text-xs text-gray-500">
-                  {user.email.replaceAll("@gmail.com", "")}
+                  {user.email?.replaceAll("@gmail.com", "")}
                 </p>
               </div>
               <Button
