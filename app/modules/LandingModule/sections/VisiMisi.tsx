@@ -12,7 +12,6 @@ import type { Candidate } from '~/types';
 
 export const VisiMisi = () => {
   const { candidates } = useLoaderData<{ candidates: Candidate[] }>();
-  console.log(candidates);
 
   return (
     <Element name="visi-misi">
@@ -24,7 +23,7 @@ export const VisiMisi = () => {
         </AnimatedTitle>
         <div>
           <Accordion type="single" collapsible defaultValue="item-1">
-            {candidates.map((item, index) => (
+            {candidates?.map((item, index) => (
               <AccordionItem key={index} value={`item-${[item.number]}`} className='bg-primary rounded-md my-3'>
                 <AccordionTrigger className='px-5 [&>svg]:hidden hover:no-underline'>
                   <div className='bg-white p-5 text-lg font-semibold rounded-full w-10 h-10 flex items-center justify-center'>
@@ -35,9 +34,7 @@ export const VisiMisi = () => {
                   <img
                     src={`/paslon${item.number}.png`}
                     alt="paslon-1"
-                    width={400}
-                    height={200}
-                    className="scale-[2.5] md:scale-175 lg:scale-100 text-center w-1/2 max-h-[300px]"
+                    className="text-center md:w-1/3"
                   />
                   <div className='flex flex-col gap-3 w-full'>
                     <div>
@@ -49,7 +46,7 @@ export const VisiMisi = () => {
                     </div>
                     <div className="max-w-3xl">
                       <h4 className="text-xl font-bold">VISI</h4>
-                      <p className="mt-2">{item.vision}</p>
+                      <p className="mt-2 text-justify">{item.vision}</p>
                     </div>
                     <Accordion type="single" className="max-w-3xl" collapsible>
                       <AccordionItem value={`item-1`}>
@@ -61,7 +58,7 @@ export const VisiMisi = () => {
                             {item.mission.map((misi, index) => (
                               <li
                                 key={index}
-                                className="bg-primary mt-2 p-5 text-primary-foreground rounded-md"
+                                className="bg-primary mt-2 p-5 text-primary-foreground rounded-md text-justify"
                               >
                                 {misi}
                               </li>
@@ -75,15 +72,15 @@ export const VisiMisi = () => {
                         </AccordionTrigger>
                         <AccordionContent className="bg-primary-foreground flex gap-5">
                           <ul className='w-full'>
-                            {item.proker.map((proker, index) => (
+                            {item.proker?.map((proker, index) => (
                               <li
                                 key={index}
                                 className="bg-primary mt-2 p-5 text-primary-foreground rounded-md"
                               >
-                                <h5 className="font-semibold">
+                                <h5 className="font-bold">
                                   {proker.prokerTitle}
                                 </h5>
-                                <p>{proker.prokerDescription}</p>
+                                <p className='font-medium text-justify'>{proker.prokerDescription}</p>
                               </li>
                             ))}
                           </ul>

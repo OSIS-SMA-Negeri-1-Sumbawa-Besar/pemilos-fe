@@ -16,8 +16,8 @@ import { ENV } from './lib/env';
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: 'PEMILOS SMANIKA' },
-    { name: 'PEMILOS SMANIKA', content: 'Welcome to PEMILOS SMANIKA!' },
+    { title: 'Pemilos SMAN 1 Sumbawa Besar' },
+    { name: 'Pemilos SMAN 1 Sumbawa Besar', content: 'Welcome to Pemilos SMAN 1 Sumbawa Besar!' },
   ];
 }
 

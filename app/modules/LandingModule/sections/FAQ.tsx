@@ -22,7 +22,7 @@ const FAQItems: FAQProps[] = [
   },
   {
     question:
-      'Bagaimana jika terjadi kendala atapun kesalahan saat mengisi data untuk website PEMILOS SMANIKA 2024?',
+      'Bagaimana jika terjadi kendala atapun kesalahan saat mengisi data untuk website PEMILOS SMANIKA 2025?',
     answer:
       'Jika terjadi kendala atau kesalahan pada sistem pada saat pelaksanaan pemilos dimulai, anda dimohon untuk menghubungi admin untuk informasi lebih lanjut.',
   },
