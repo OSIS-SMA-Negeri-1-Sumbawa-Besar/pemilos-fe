@@ -84,7 +84,7 @@ export const NavbarItem = ({
 };
 
 export const Navbar = ({ user }: { user: Session }) => {
-  
+
   const navigate = useNavigate();
   const location = useLocation();
   const revalidator = useRevalidator();
@@ -256,7 +256,7 @@ export const Navbar = ({ user }: { user: Session }) => {
             />
           </motion.div>
           {
-            (location.pathname !== '/login' && !user) &&
+            (location.pathname !== '/login' && !user.email) &&
             <motion.div
               key={`login-btn-${isVisible}`}
               initial={{ opacity: 0, x: 30 }}
