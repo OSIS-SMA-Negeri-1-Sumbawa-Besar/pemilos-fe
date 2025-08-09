@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { LogIn, LogOut, Menu } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useRevalidator } from 'react-router';
 import { scroller } from 'react-scroll';
 import { toast } from 'sonner';
@@ -41,19 +41,19 @@ export const NavbarItem = ({
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      transition={{ 
-        duration: 0.6, 
+      transition={{
+        duration: 0.6,
         delay: isNavbarVisible ? index * 0.15 : 0,
         type: "spring",
         stiffness: 100,
         damping: 15
       }}
       className={`group transition duration-300 cursor-pointer list-none text-sm ${isActive ? 'font-bold text-primary' : ''}`}
-      whileHover={{ 
-        scale: 1.08, 
-        transition: { duration: 0.2, type: "spring", stiffness: 400 } 
+      whileHover={{
+        scale: 1.08,
+        transition: { duration: 0.2, type: "spring", stiffness: 400 }
       }}
-      whileTap={{ 
+      whileTap={{
         scale: 0.95,
         transition: { duration: 0.1 }
       }}
@@ -66,18 +66,17 @@ export const NavbarItem = ({
           initial={{ scaleX: 0, opacity: 0 }}
           animate={{ scaleX: 1, opacity: 1 }}
           exit={{ scaleX: 0, opacity: 0 }}
-          transition={{ 
-            duration: 0.4, 
+          transition={{
+            duration: 0.4,
             delay: 0.2,
             type: "spring",
             stiffness: 200,
             damping: 20
           }}
-          className={`block transition-all duration-500 h-0.5 bg-secondary ${
-            isActive 
-              ? 'max-w-full' 
-              : 'max-w-0 group-hover:max-w-full'
-          }`}
+          className={`block transition-all duration-500 h-0.5 bg-secondary ${isActive
+            ? 'max-w-full'
+            : 'max-w-0 group-hover:max-w-full'
+            }`}
         />
       )}
     </motion.li>
@@ -89,7 +88,7 @@ export const Navbar = ({ user }: { user: Session }) => {
   const location = useLocation();
   const revalidator = useRevalidator();
   const authClient = getAuthClient();
-  
+
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrollTimeout, setScrollTimeout] = useState<NodeJS.Timeout | null>(null);
@@ -97,7 +96,7 @@ export const Navbar = ({ user }: { user: Session }) => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Clear existing timeout
       if (scrollTimeout) {
         clearTimeout(scrollTimeout);
@@ -138,7 +137,7 @@ export const Navbar = ({ user }: { user: Session }) => {
   }
 
   return (
-    <motion.nav 
+    <motion.nav
       className="w-full z-30 px-10 md:px-20 top-5 md:top-10 sticky"
       initial={{ y: 0 }}
       animate={{ y: isVisible ? 0 : -100 }}
@@ -166,8 +165,8 @@ export const Navbar = ({ user }: { user: Session }) => {
           key={`logo-${isVisible}`}
           initial={{ opacity: 0, rotate: -10, scale: 0.8 }}
           animate={{ opacity: 1, rotate: 0, scale: 1 }}
-          transition={{ 
-            duration: 0.6, 
+          transition={{
+            duration: 0.6,
             delay: 0.2,
             type: "spring",
             stiffness: 200,
@@ -180,13 +179,13 @@ export const Navbar = ({ user }: { user: Session }) => {
           className="w-20 h-14 mr-10"
         />
         <div className='hidden lg:flex items-center justify-between w-full'>
-          <motion.div 
+          <motion.div
             key={`nav-items-${isVisible}`}
             className="gap-10 hidden lg:flex font-semibold"
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ 
-              duration: 0.5, 
+            transition={{
+              duration: 0.5,
               delay: 0.3,
               type: "spring",
               stiffness: 120,
@@ -204,7 +203,7 @@ export const Navbar = ({ user }: { user: Session }) => {
             />
             {/* Vote Item */}
             {
-              user &&
+              (user && !user.hasVoted) &&
               <NavbarItem
                 name="Vote"
                 index={1}
@@ -261,8 +260,8 @@ export const Navbar = ({ user }: { user: Session }) => {
               key={`login-btn-${isVisible}`}
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ 
-                duration: 0.5, 
+              transition={{
+                duration: 0.5,
                 delay: 0.4,
                 type: "spring",
                 stiffness: 120,
@@ -284,13 +283,13 @@ export const Navbar = ({ user }: { user: Session }) => {
 
           {
             user &&
-            <motion.div 
+            <motion.div
               key={`user-info-${isVisible}`}
               className="flex items-center gap-4"
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ 
-                duration: 0.5, 
+              transition={{
+                duration: 0.5,
                 delay: 0.4,
                 type: "spring",
                 stiffness: 120,
@@ -298,7 +297,7 @@ export const Navbar = ({ user }: { user: Session }) => {
               }}
             >
               <div className='flex  flex-col text-right'>
-                <p className="text-sm font-semibold mr-2">
+                <p className="text-sm font-semibold">
                   {user.name}
                 </p>
                 <p className="text-xs text-gray-500">
@@ -323,8 +322,8 @@ export const Navbar = ({ user }: { user: Session }) => {
               key={`menu-icon-${isVisible}`}
               initial={{ opacity: 0, rotate: -90 }}
               animate={{ opacity: 1, rotate: 0 }}
-              transition={{ 
-                duration: 0.5, 
+              transition={{
+                duration: 0.5,
                 delay: 0.3,
                 type: "spring",
                 stiffness: 200,
@@ -335,7 +334,7 @@ export const Navbar = ({ user }: { user: Session }) => {
             </motion.div>
           </PopoverTrigger>
           <PopoverContent className='max-w-52 p-10 mr-10 mt-7 md:mr-20 md:p-14 md:max-w-none'>
-            <motion.div 
+            <motion.div
               key={`mobile-nav-${isVisible}`}
               className="gap-3 flex flex-col font-semibold text-black-secondary font-manrope"
               initial={{ opacity: 0 }}

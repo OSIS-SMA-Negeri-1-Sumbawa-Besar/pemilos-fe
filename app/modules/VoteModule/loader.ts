@@ -7,7 +7,7 @@ export async function VoteLoader({ request }: LoaderFunctionArgs) {
 
   const user = await getUserFromRequest(request);
 
-  if (!user) { 
+  if (!user) {
     return redirect('/login');
   }
 

@@ -114,15 +114,15 @@ export const VoteModule = () => {
                             <h1 className="font-semibold text-lg bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center">
                               {index + 1}
                             </h1>
-                            <div className='flex flex-col items-center justify-center'>
+                            <div className='flex flex-col items-center justify-center gap-4'>
                               <img
                                 src={`/paslon${candidate.number}.png`}
                                 alt="paslon-1"
                                 width={400}
                                 height={200}
-                                className="max-h-[250px] scale-75 md:scale-100 object-contain"
+                                className="max-h-[250px] object-contain"
                               />
-                              <div className='flex flex-col gap-2 w-full justify-center items-center'>
+                              <div className='flex flex-col w-full justify-center items-center'>
                                 <h2 className="text-2xl font-bold text-center">{candidate.presidentName} & {candidate.vicePresidentName}</h2>
                                 <p className='text-sm text-slate-600 text-center'>Pasangan Calon Ketua dan Wakil Ketua Osis Nomor Urut {candidate.number}</p>
                               </div>
