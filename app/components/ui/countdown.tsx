@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import type { ComponentPropsWithoutRef } from 'react'
-import { Timer } from 'lucide-react'
-import { cn } from '~/lib/utils'
+import React, { useEffect, useState } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
+import { Timer } from 'lucide-react';
+import { cn } from '~/lib/utils';
 
 export interface CountdownProps {
-  date: string
-  type: 'Days' | 'Hours' | 'Minutes' | 'Seconds'
-  classNameType?: string
-  classNameBlock?: string
+  date: string;
+  type: 'Days' | 'Hours' | 'Minutes' | 'Seconds';
+  classNameType?: string;
+  classNameBlock?: string;
 }
 
 const BlockTime: React.FC<ComponentPropsWithoutRef<'div'> & CountdownProps> = ({
@@ -42,8 +42,8 @@ const BlockTime: React.FC<ComponentPropsWithoutRef<'div'> & CountdownProps> = ({
         </span>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const DotTime = () => {
   return (
@@ -51,8 +51,8 @@ const DotTime = () => {
       <div className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-Text/TextDarkBG"></div>
       <div className="w-1 h-1 sm:w-2 sm:h-2 rounded-full bg-Text/TextDarkBG"></div>
     </div>
-  )
-}
+  );
+};
 
 const Countdown = ({
   targetDate,
@@ -61,37 +61,37 @@ const Countdown = ({
   classNameBlock,
   onComplete,
 }: {
-  targetDate: Date
-  displayDate?: boolean
-  classNameType?: string
-  classNameBlock?: string
-  onComplete?: () => void
+  targetDate: Date;
+  displayDate?: boolean;
+  classNameType?: string;
+  classNameBlock?: string;
+  onComplete?: () => void;
 }) => {
   const defaultRemainingTime = {
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
-  }
+  };
 
-  const [remainingTime, setRemainingTime] = useState(defaultRemainingTime)
+  const [remainingTime, setRemainingTime] = useState(defaultRemainingTime);
   const [dateTime, setDateTime] = useState({
     date: '',
     time: '',
-  })
+  });
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const deadlineDate = targetDate.getTime()
-      const now = new Date().getTime()
-      const distance = deadlineDate - now
+      const deadlineDate = targetDate.getTime();
+      const now = new Date().getTime();
+      const distance = deadlineDate - now;
 
-      const days = Math.floor(distance / (24 * 60 * 60 * 1000))
+      const days = Math.floor(distance / (24 * 60 * 60 * 1000));
       const hours = Math.floor(
         (distance % (24 * 60 * 60 * 1000)) / (1000 * 60 * 60)
-      )
-      const minutes = Math.floor((distance % (60 * 60 * 1000)) / (1000 * 60))
-      const seconds = Math.floor((distance % (60 * 1000)) / 1000)
+      );
+      const minutes = Math.floor((distance % (60 * 60 * 1000)) / (1000 * 60));
+      const seconds = Math.floor((distance % (60 * 1000)) / 1000);
 
       if (distance < 0) {
         setRemainingTime({
@@ -99,9 +99,9 @@ const Countdown = ({
           hours: 0,
           minutes: 0,
           seconds: 0,
-        })
+        });
         if (onComplete) {
-          onComplete()
+          onComplete();
         }
       } else {
         setRemainingTime({
@@ -109,32 +109,32 @@ const Countdown = ({
           hours,
           minutes,
           seconds,
-        })
+        });
       }
-    }, 1000)
+    }, 1000);
 
-    return () => clearInterval(interval)
-  }, [targetDate, displayDate, onComplete])
+    return () => clearInterval(interval);
+  }, [targetDate, displayDate, onComplete]);
 
   useEffect(() => {
     const date = targetDate.toLocaleDateString('id-ID', {
       day: 'numeric',
       month: 'short',
       year: 'numeric',
-    })
+    });
     const time = targetDate
       .toLocaleTimeString('id-ID', {
         hour: '2-digit',
         minute: '2-digit',
         timeZoneName: 'short',
       })
-      .replace('.', ':')
+      .replace('.', ':');
 
     setDateTime({
       date,
       time,
-    })
-  }, [targetDate])
+    });
+  }, [targetDate]);
 
   return (
     <div className="flex flex-col items-center gap-2">
@@ -189,7 +189,7 @@ const Countdown = ({
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Countdown
+export default Countdown;

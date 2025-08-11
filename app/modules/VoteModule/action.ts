@@ -10,7 +10,7 @@ export async function VoteAction({ request }: ActionFunctionArgs) {
     if (!candidateCode || !voteToken) {
       return {
         success: false,
-        message: 'Candidate code dan vote token harus diisi'
+        message: 'Candidate code dan vote token harus diisi',
       };
     }
 
@@ -18,26 +18,25 @@ export async function VoteAction({ request }: ActionFunctionArgs) {
       method: 'POST',
       body: JSON.stringify({
         candidateCode,
-        voteToken
+        voteToken,
       }),
     });
 
     if (response.error) {
       return {
         success: false,
-        message: response.message || 'Gagal mengirim vote'
+        message: response.message || 'Gagal mengirim vote',
       };
     }
 
     return {
       success: true,
-      message: 'Vote berhasil dikirim!'
+      message: 'Vote berhasil dikirim!',
     };
-
   } catch (error) {
     return {
       success: false,
-      message: 'Terjadi kesalahan saat mengirim vote'
+      message: 'Terjadi kesalahan saat mengirim vote',
     };
   }
 }

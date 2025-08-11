@@ -17,7 +17,10 @@ import { ENV } from './lib/env';
 export function meta({}: Route.MetaArgs) {
   return [
     { title: 'Pemilos SMAN 1 Sumbawa Besar' },
-    { name: 'Pemilos SMAN 1 Sumbawa Besar', content: 'Welcome to Pemilos SMAN 1 Sumbawa Besar!' },
+    {
+      name: 'Pemilos SMAN 1 Sumbawa Besar',
+      content: 'Welcome to Pemilos SMAN 1 Sumbawa Besar!',
+    },
   ];
 }
 
@@ -50,9 +53,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           className="fixed z-[-1] opacity-[3%] h-screen top w-full"
         />
         {children}
-        <Toaster 
-          position='bottom-right'
-        />
+        <Toaster position="bottom-right" />
         <ScrollRestoration />
         <Scripts />
       </body>

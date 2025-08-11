@@ -1,12 +1,26 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { redirect, useFetcher, useLoaderData, useRevalidator } from 'react-router';
+import {
+  redirect,
+  useFetcher,
+  useLoaderData,
+  useRevalidator,
+} from 'react-router';
 import { toast } from 'sonner';
 import { AnimatedSection } from '~/components/ui/animated-section';
 import { Button } from '~/components/ui/button';
 import { Card, CardContent } from '~/components/ui/card';
 import Countdown from '~/components/ui/countdown';
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '~/components/ui/dialog';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '~/components/ui/dialog';
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
 import type { Candidate } from '~/types';
@@ -22,7 +36,9 @@ export const VoteModule = () => {
   const isUseVoteDate = false;
 
   const [showTokenModal, setShowTokenModal] = useState(false);
-  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(null);
+  const [selectedCandidate, setSelectedCandidate] = useState<Candidate | null>(
+    null
+  );
   const [voteToken, setVoteToken] = useState('');
 
   const handleVote = (candidateCode: string, voteToken: string) => {
@@ -36,20 +52,23 @@ export const VoteModule = () => {
         action: '/vote',
       }
     );
-  }
+  };
 
   const handleConfirmVote = (candidate: Candidate) => {
     setSelectedCandidate(candidate);
     setShowTokenModal(true);
-  }
+  };
 
   const handleSubmitToken = () => {
     if (!selectedCandidate || !voteToken.trim()) {
       toast.error('Token vote harus diisi');
       return;
     }
-    handleVote(selectedCandidate.code || selectedCandidate.number.toString(), voteToken);
-  }
+    handleVote(
+      selectedCandidate.code || selectedCandidate.number.toString(),
+      voteToken
+    );
+  };
 
   useEffect(() => {
     if (fetcher.data) {
@@ -65,7 +84,7 @@ export const VoteModule = () => {
         toast.error(fetcher.data.message || 'Gagal mengirim vote');
       }
     }
-  }, [fetcher.data, revalidator])
+  }, [fetcher.data, revalidator]);
 
   return (
     <section
@@ -83,8 +102,8 @@ export const VoteModule = () => {
           }}
           className="font-extrabold font-manrope text-black-primary text-3xl md:text-6xl text-center leading-tight"
         >
-          Pilih sesuai <br />{' '}
-          <b className="text-primary">Hati Nuranimu</b>, Yak!
+          Pilih sesuai <br /> <b className="text-primary">Hati Nuranimu</b>,
+          Yak!
         </motion.h1>
         <motion.h3
           initial={{ scale: 0 }}
@@ -96,25 +115,24 @@ export const VoteModule = () => {
           }}
           className="text-black-secondary text-xl md:text-2xl font-bold text-center"
         >
-          {isVoteDate || !isUseVoteDate ?
-            'Klik kandidat yang ingin dipilih'
+          {isVoteDate || !isUseVoteDate
+            ? 'Klik kandidat yang ingin dipilih'
             : 'Tunggu waktu voting yak!'}
         </motion.h3>
         {isVoteDate || !isUseVoteDate ? (
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10 relative'>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10 relative">
             {candidates ? (
               candidates.map((candidate, index) => {
                 return (
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Card
-                        className='cursor-pointer hover:scale-105 duration-300'>
+                      <Card className="cursor-pointer hover:scale-105 duration-300">
                         <CardContent>
-                          <div className='flex flex-col justify-center gap-5'>
+                          <div className="flex flex-col justify-center gap-5">
                             <h1 className="font-semibold text-lg bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center">
                               {index + 1}
                             </h1>
-                            <div className='flex flex-col items-center justify-center gap-4'>
+                            <div className="flex flex-col items-center justify-center gap-4">
                               <img
                                 src={`/paslon${candidate.number}.png`}
                                 alt="paslon-1"
@@ -122,9 +140,15 @@ export const VoteModule = () => {
                                 height={200}
                                 className="max-h-[250px] object-contain"
                               />
-                              <div className='flex flex-col w-full justify-center items-center'>
-                                <h2 className="text-2xl font-bold text-center">{candidate.presidentName} & {candidate.vicePresidentName}</h2>
-                                <p className='text-sm text-slate-600 text-center'>Pasangan Calon Ketua dan Wakil Ketua Osis Nomor Urut {candidate.number}</p>
+                              <div className="flex flex-col w-full justify-center items-center">
+                                <h2 className="text-2xl font-bold text-center">
+                                  {candidate.presidentName} &{' '}
+                                  {candidate.vicePresidentName}
+                                </h2>
+                                <p className="text-sm text-slate-600 text-center">
+                                  Pasangan Calon Ketua dan Wakil Ketua Osis
+                                  Nomor Urut {candidate.number}
+                                </p>
                               </div>
                             </div>
                           </div>
@@ -134,15 +158,19 @@ export const VoteModule = () => {
                     <DialogContent>
                       <DialogHeader>
                         <DialogTitle>
-                          Apakah Kamu Yakin Memilih Paslon Nomor {candidate.number}?
+                          Apakah Kamu Yakin Memilih Paslon Nomor{' '}
+                          {candidate.number}?
                         </DialogTitle>
-                        <DialogDescription className='text-destructive font-bold'>
+                        <DialogDescription className="text-destructive font-bold">
                           Pilihan kamu tidak dapat di ubah!
                         </DialogDescription>
                       </DialogHeader>
                       <DialogFooter className="flex flex-col-reverse gap-2 mt-10">
                         <DialogClose>
-                          <Button variant={'outline'} className="w-full cursor-pointer">
+                          <Button
+                            variant={'outline'}
+                            className="w-full cursor-pointer"
+                          >
                             Tidak Yakin
                           </Button>
                         </DialogClose>
@@ -159,14 +187,13 @@ export const VoteModule = () => {
                       </DialogFooter>
                     </DialogContent>
                   </Dialog>
-                )
+                );
               })
             ) : (
               <AnimatedSection className="animate-pulse font-manrope font-bold w-full flex justify-center">
                 Loading Data...
               </AnimatedSection>
             )}
-
           </div>
         ) : (
           <Countdown targetDate={voteDate} />
@@ -176,11 +203,12 @@ export const VoteModule = () => {
         <Dialog open={showTokenModal} onOpenChange={setShowTokenModal}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>
-                Masukkan Token Vote
-              </DialogTitle>
+              <DialogTitle>Masukkan Token Vote</DialogTitle>
               <DialogDescription>
-                Masukkan token vote yang telah diberikan untuk melanjutkan pemilihan {selectedCandidate?.presidentName} & {selectedCandidate?.vicePresidentName} (Nomor {selectedCandidate?.number})
+                Masukkan token vote yang telah diberikan untuk melanjutkan
+                pemilihan {selectedCandidate?.presidentName} &{' '}
+                {selectedCandidate?.vicePresidentName} (Nomor{' '}
+                {selectedCandidate?.number})
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
@@ -199,7 +227,7 @@ export const VoteModule = () => {
               </div>
             </div>
             <DialogFooter className="flex flex-col-reverse gap-2">
-              <DialogClose className=''>
+              <DialogClose className="">
                 <Button
                   variant="outline"
                   className="w-full cursor-pointer"
@@ -222,6 +250,6 @@ export const VoteModule = () => {
           </DialogContent>
         </Dialog>
       </div>
-    </section >
+    </section>
   );
-}; 
+};

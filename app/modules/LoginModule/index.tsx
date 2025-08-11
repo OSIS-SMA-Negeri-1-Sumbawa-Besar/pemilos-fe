@@ -1,22 +1,32 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { motion } from 'framer-motion'
-import { LogIn } from 'lucide-react'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { toast } from 'sonner'
-import { z } from 'zod'
-import { Button } from '~/components/ui/button'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/components/ui/form'
-import { Input } from '~/components/ui/input'
-import { getAuthClient } from '~/lib/auth'
+import { zodResolver } from '@hookform/resolvers/zod';
+import { motion } from 'framer-motion';
+import { LogIn } from 'lucide-react';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
+import { Button } from '~/components/ui/button';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '~/components/ui/form';
+import { Input } from '~/components/ui/input';
+import { getAuthClient } from '~/lib/auth';
 
 // Login schema validation
 const loginSchema = z.object({
   username: z.string().min(1, 'Username is required'),
-  password: z.string().min(1, 'Password is required').min(5, 'Password must be at least 5 characters'),
-})
+  password: z
+    .string()
+    .min(1, 'Password is required')
+    .min(5, 'Password must be at least 5 characters'),
+});
 
-type LoginFormValues = z.infer<typeof loginSchema>
+type LoginFormValues = z.infer<typeof loginSchema>;
 
 export function LoginModule() {
   const [loading, setLoading] = useState(false);
@@ -27,7 +37,7 @@ export function LoginModule() {
       username: '',
       password: '',
     },
-  })
+  });
 
   const authClient = getAuthClient();
 
@@ -36,17 +46,17 @@ export function LoginModule() {
     const { error } = await authClient.signIn.email({
       email: `${values.username}@gmail.com`,
       password: values.password,
-      callbackURL: '/'
-    })
+      callbackURL: '/',
+    });
 
     // Revoke Other Sessions
-    await authClient.revokeOtherSessions()
+    await authClient.revokeOtherSessions();
 
     setLoading(false);
     if (error) {
-      return toast.error(error.message || 'Login failed')
+      return toast.error(error.message || 'Login failed');
     }
-  }
+  };
   return (
     <section className="font-manrope w-full h-screen relative overflow-hidden flex items-center justify-center">
       <div className="flex flex-col gap-2 items-center z-20">
@@ -80,7 +90,10 @@ export function LoginModule() {
           <div className="flex flex-col gap-8">
             <label className="font-bold text-xl text-center">Login</label>
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-6"
+              >
                 <FormField
                   control={form.control}
                   name="username"
@@ -132,5 +145,5 @@ export function LoginModule() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

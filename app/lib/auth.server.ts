@@ -7,7 +7,7 @@ export type Session = {
   email: string;
   name: string;
   hasVoted?: boolean;
-}
+};
 
 export const getAuthServer = () => {
   const auth_server = createAuthClient({

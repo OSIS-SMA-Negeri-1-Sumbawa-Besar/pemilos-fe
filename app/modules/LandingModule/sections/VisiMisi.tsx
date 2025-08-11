@@ -2,9 +2,10 @@
 import { useLoaderData } from 'react-router';
 import { Element } from 'react-scroll';
 import {
-  Accordion, AccordionContent,
+  Accordion,
+  AccordionContent,
   AccordionItem,
-  AccordionTrigger
+  AccordionTrigger,
 } from '~/components/ui/accordion';
 import { AnimatedSection } from '~/components/ui/animated-section';
 import { AnimatedTitle } from '~/components/ui/animated-title';
@@ -24,9 +25,13 @@ export const VisiMisi = () => {
         <div>
           <Accordion type="single" collapsible defaultValue="item-1">
             {candidates?.map((item, index) => (
-              <AccordionItem key={index} value={`item-${[item.number]}`} className='bg-primary rounded-md my-3'>
-                <AccordionTrigger className='px-5 [&>svg]:hidden hover:no-underline'>
-                  <div className='bg-white p-5 text-lg font-semibold rounded-full w-10 h-10 flex items-center justify-center'>
+              <AccordionItem
+                key={index}
+                value={`item-${[item.number]}`}
+                className="bg-primary rounded-md my-3"
+              >
+                <AccordionTrigger className="px-5 [&>svg]:hidden hover:no-underline">
+                  <div className="bg-white p-5 text-lg font-semibold rounded-full w-10 h-10 flex items-center justify-center">
                     {item.number}
                   </div>
                 </AccordionTrigger>
@@ -36,9 +41,11 @@ export const VisiMisi = () => {
                     alt="paslon-1"
                     className="text-center md:w-1/3"
                   />
-                  <div className='flex flex-col gap-3 w-full'>
+                  <div className="flex flex-col gap-3 w-full">
                     <div>
-                      <h3 className="text-2xl md:text-3xl font-bold">{item.presidentName} & {item.vicePresidentName}</h3>
+                      <h3 className="text-2xl md:text-3xl font-bold">
+                        {item.presidentName} & {item.vicePresidentName}
+                      </h3>
                       <p className="mt-2 text-gray-600">
                         Calon Ketua dan Wakil Ketua Osis Nomor Urut{' '}
                         {item.number}
@@ -54,7 +61,7 @@ export const VisiMisi = () => {
                           <h4 className="text-lg font-bold">MISI</h4>
                         </AccordionTrigger>
                         <AccordionContent className="bg-primary-foreground flex gap-5">
-                          <ul className='w-full'>
+                          <ul className="w-full">
                             {item.mission.map((misi, index) => (
                               <li
                                 key={index}
@@ -71,7 +78,7 @@ export const VisiMisi = () => {
                           <h4 className="text-lg font-bold">PROKER</h4>
                         </AccordionTrigger>
                         <AccordionContent className="bg-primary-foreground flex gap-5">
-                          <ul className='w-full'>
+                          <ul className="w-full">
                             {item.proker?.map((proker, index) => (
                               <li
                                 key={index}
@@ -80,7 +87,9 @@ export const VisiMisi = () => {
                                 <h5 className="font-bold">
                                   {proker.prokerTitle}
                                 </h5>
-                                <p className='font-medium text-justify'>{proker.prokerDescription}</p>
+                                <p className="font-medium text-justify">
+                                  {proker.prokerDescription}
+                                </p>
                               </li>
                             ))}
                           </ul>

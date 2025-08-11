@@ -5,8 +5,8 @@ export async function LoginLoader({ request }: LoaderFunctionArgs) {
   const user = await getUserFromRequest(request);
 
   if (user) {
-    return redirect('/')
+    return redirect('/');
   }
-  
+
   return null;
 }

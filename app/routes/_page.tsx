@@ -1,4 +1,9 @@
-import { Outlet, redirect, useLoaderData, type LoaderFunctionArgs } from 'react-router';
+import {
+  Outlet,
+  redirect,
+  useLoaderData,
+  type LoaderFunctionArgs,
+} from 'react-router';
 import { Background } from '~/components/elements/Background/background';
 import { BottomBar } from '~/components/ui/footer';
 import { Navbar } from '~/components/ui/navbar';
@@ -8,7 +13,9 @@ import { fetchServer } from '~/lib/fetcher.server';
 export async function loader(args: LoaderFunctionArgs) {
   const user = await getUserFromRequest(args.request);
 
-  const isUserHasVoted = (await fetchServer<boolean>('votes/check', args.request)).data;
+  const isUserHasVoted = (
+    await fetchServer<boolean>('votes/check', args.request)
+  ).data;
 
   if (args.request.url.includes('/vote') && isUserHasVoted) {
     return redirect('/');
@@ -16,7 +23,7 @@ export async function loader(args: LoaderFunctionArgs) {
 
   return {
     ...user,
-    hasVoted: isUserHasVoted
+    hasVoted: isUserHasVoted,
   };
 }
 
@@ -26,9 +33,7 @@ export default function PageLayout() {
     <main>
       <div className="max-w-[1920px] relative mx-auto">
         <Background />
-        <Navbar
-          user={user as Session}
-        />
+        <Navbar user={user as Session} />
         <Outlet context={user} />
         <BottomBar />
       </div>

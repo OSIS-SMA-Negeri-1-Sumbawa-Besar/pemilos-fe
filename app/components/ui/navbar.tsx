@@ -44,18 +44,18 @@ export const NavbarItem = ({
       transition={{
         duration: 0.6,
         delay: isNavbarVisible ? index * 0.15 : 0,
-        type: "spring",
+        type: 'spring',
         stiffness: 100,
-        damping: 15
+        damping: 15,
       }}
       className={`group transition duration-300 cursor-pointer list-none text-sm ${isActive ? 'font-bold text-primary' : ''}`}
       whileHover={{
         scale: 1.08,
-        transition: { duration: 0.2, type: "spring", stiffness: 400 }
+        transition: { duration: 0.2, type: 'spring', stiffness: 400 },
       }}
       whileTap={{
         scale: 0.95,
-        transition: { duration: 0.1 }
+        transition: { duration: 0.1 },
       }}
       onAnimationComplete={handleTextAnimationComplete}
       onClick={onClick}
@@ -69,14 +69,13 @@ export const NavbarItem = ({
           transition={{
             duration: 0.4,
             delay: 0.2,
-            type: "spring",
+            type: 'spring',
             stiffness: 200,
-            damping: 20
+            damping: 20,
           }}
-          className={`block transition-all duration-500 h-0.5 bg-secondary ${isActive
-            ? 'max-w-full'
-            : 'max-w-0 group-hover:max-w-full'
-            }`}
+          className={`block transition-all duration-500 h-0.5 bg-secondary ${
+            isActive ? 'max-w-full' : 'max-w-0 group-hover:max-w-full'
+          }`}
         />
       )}
     </motion.li>
@@ -84,7 +83,6 @@ export const NavbarItem = ({
 };
 
 export const Navbar = ({ user }: { user: Session }) => {
-
   const navigate = useNavigate();
   const location = useLocation();
   const revalidator = useRevalidator();
@@ -92,7 +90,9 @@ export const Navbar = ({ user }: { user: Session }) => {
 
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [scrollTimeout, setScrollTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [scrollTimeout, setScrollTimeout] = useState<NodeJS.Timeout | null>(
+    null
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -133,9 +133,9 @@ export const Navbar = ({ user }: { user: Session }) => {
   const handleLogout = () => {
     authClient.signOut();
 
-    toast.success('Berhasil logout')
+    toast.success('Berhasil logout');
     revalidator.revalidate();
-  }
+  };
 
   return (
     <motion.nav
@@ -144,9 +144,9 @@ export const Navbar = ({ user }: { user: Session }) => {
       animate={{ y: isVisible ? 0 : -100 }}
       transition={{
         duration: 0.3,
-        type: "spring",
+        type: 'spring',
         stiffness: 120,
-        damping: 20
+        damping: 20,
       }}
     >
       <motion.nav
@@ -169,9 +169,9 @@ export const Navbar = ({ user }: { user: Session }) => {
           transition={{
             duration: 0.6,
             delay: 0.2,
-            type: "spring",
+            type: 'spring',
             stiffness: 200,
-            damping: 20
+            damping: 20,
           }}
           src={'/logo-smanika-osis.png'}
           alt="Logo"
@@ -179,7 +179,7 @@ export const Navbar = ({ user }: { user: Session }) => {
           height={200}
           className="w-20 h-14 mr-10"
         />
-        <div className='hidden lg:flex items-center justify-between w-full'>
+        <div className="hidden lg:flex items-center justify-between w-full">
           <motion.div
             key={`nav-items-${isVisible}`}
             className="gap-10 hidden lg:flex font-semibold"
@@ -188,9 +188,9 @@ export const Navbar = ({ user }: { user: Session }) => {
             transition={{
               duration: 0.5,
               delay: 0.3,
-              type: "spring",
+              type: 'spring',
               stiffness: 120,
-              damping: 20
+              damping: 20,
             }}
           >
             <NavbarItem
@@ -203,8 +203,7 @@ export const Navbar = ({ user }: { user: Session }) => {
               }}
             />
             {/* Vote Item */}
-            {
-              (user?.email && !user?.hasVoted) &&
+            {user?.email && !user?.hasVoted && (
               <NavbarItem
                 name="Vote"
                 index={1}
@@ -214,7 +213,7 @@ export const Navbar = ({ user }: { user: Session }) => {
                   navigate('/vote');
                 }}
               />
-            }
+            )}
             <NavbarItem
               name="Visi Misi"
               index={2}
@@ -255,8 +254,7 @@ export const Navbar = ({ user }: { user: Session }) => {
               }}
             />
           </motion.div>
-          {
-            (location.pathname !== '/login' && !user.email) &&
+          {location.pathname !== '/login' && !user.email && (
             <motion.div
               key={`login-btn-${isVisible}`}
               initial={{ opacity: 0, x: 30 }}
@@ -264,9 +262,9 @@ export const Navbar = ({ user }: { user: Session }) => {
               transition={{
                 duration: 0.5,
                 delay: 0.4,
-                type: "spring",
+                type: 'spring',
                 stiffness: 120,
-                damping: 20
+                damping: 20,
               }}
             >
               <Button
@@ -280,10 +278,9 @@ export const Navbar = ({ user }: { user: Session }) => {
                 Login
               </Button>
             </motion.div>
-          }
+          )}
 
-          {
-            user?.email &&
+          {user?.email && (
             <motion.div
               key={`user-info-${isVisible}`}
               className="flex items-center gap-4"
@@ -292,17 +289,15 @@ export const Navbar = ({ user }: { user: Session }) => {
               transition={{
                 duration: 0.5,
                 delay: 0.4,
-                type: "spring",
+                type: 'spring',
                 stiffness: 120,
-                damping: 20
+                damping: 20,
               }}
             >
-              <div className='flex  flex-col text-right'>
-                <p className="text-sm font-semibold">
-                  {user.name}
-                </p>
+              <div className="flex  flex-col text-right">
+                <p className="text-sm font-semibold">{user.name}</p>
                 <p className="text-xs text-gray-500">
-                  {user.email?.replaceAll("@gmail.com", "")}
+                  {user.email?.replaceAll('@gmail.com', '')}
                 </p>
               </div>
               <Button
@@ -314,11 +309,11 @@ export const Navbar = ({ user }: { user: Session }) => {
                 Logout
               </Button>
             </motion.div>
-          }
+          )}
         </div>
 
         <Popover>
-          <PopoverTrigger className='lg:hidden'>
+          <PopoverTrigger className="lg:hidden">
             <motion.div
               key={`menu-icon-${isVisible}`}
               initial={{ opacity: 0, rotate: -90 }}
@@ -326,15 +321,15 @@ export const Navbar = ({ user }: { user: Session }) => {
               transition={{
                 duration: 0.5,
                 delay: 0.3,
-                type: "spring",
+                type: 'spring',
                 stiffness: 200,
-                damping: 20
+                damping: 20,
               }}
             >
               <Menu className="w-8 h-8" />
             </motion.div>
           </PopoverTrigger>
-          <PopoverContent className='max-w-52 p-10 mr-10 mt-7 md:mr-20 md:p-14 md:max-w-none'>
+          <PopoverContent className="max-w-52 p-10 mr-10 mt-7 md:mr-20 md:p-14 md:max-w-none">
             <motion.div
               key={`mobile-nav-${isVisible}`}
               className="gap-3 flex flex-col font-semibold text-black-secondary font-manrope"
@@ -352,8 +347,7 @@ export const Navbar = ({ user }: { user: Session }) => {
                 }}
               />
               {/* Vote Item */}
-              {
-                (user?.email && !user?.hasVoted) &&
+              {user?.email && !user?.hasVoted && (
                 <NavbarItem
                   name="Vote"
                   index={1}
@@ -363,7 +357,7 @@ export const Navbar = ({ user }: { user: Session }) => {
                     navigate('/vote');
                   }}
                 />
-              }
+              )}
               <NavbarItem
                 name="Visi Misi"
                 index={2}
@@ -405,11 +399,10 @@ export const Navbar = ({ user }: { user: Session }) => {
               />
             </motion.div>
             {/* Login Button - same logic as desktop */}
-            {
-              (location.pathname !== '/login' && !user.email) &&
+            {location.pathname !== '/login' && !user.email && (
               <Button
                 variant={'default'}
-                className='mt-3'
+                className="mt-3"
                 onClick={() => {
                   navigate('/login');
                 }}
@@ -417,22 +410,19 @@ export const Navbar = ({ user }: { user: Session }) => {
                 <LogIn className="w-4" />
                 Login
               </Button>
-            }
+            )}
             {/* User Info and Logout - same as desktop */}
-            {
-              user?.email &&
+            {user?.email && (
               <motion.div
                 className="flex flex-col gap-3 mt-3"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
               >
-                <div className='flex flex-col'>
-                  <p className="text-sm font-semibold">
-                    {user.name}
-                  </p>
+                <div className="flex flex-col">
+                  <p className="text-sm font-semibold">{user.name}</p>
                   <p className="text-xs text-gray-500">
-                    {user.email?.replaceAll("@gmail.com", "")}
+                    {user.email?.replaceAll('@gmail.com', '')}
                   </p>
                 </div>
                 <Button
@@ -444,7 +434,7 @@ export const Navbar = ({ user }: { user: Session }) => {
                   Logout
                 </Button>
               </motion.div>
-            }
+            )}
           </PopoverContent>
         </Popover>
       </motion.nav>

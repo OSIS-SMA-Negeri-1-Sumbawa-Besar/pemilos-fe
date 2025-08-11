@@ -12,5 +12,5 @@ export async function action(args: ActionFunctionArgs) {
 }
 
 export default function LandingPage() {
-  return <LandingModule />
+  return <LandingModule />;
 }

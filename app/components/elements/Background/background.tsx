@@ -12,7 +12,7 @@ export const Background = () => {
     } else {
       return 'block';
     }
-  }
+  };
 
   return (
     <div className={`w-full h-screen absolute z-0 ${handleVisible()}`}>
