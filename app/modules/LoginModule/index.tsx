@@ -99,10 +99,10 @@ export function LoginModule() {
                   name="username"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Username</FormLabel>
+                      <FormLabel>NIS</FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="Username"
+                          placeholder="NIS"
                           className="font-manrope font-semibold text-sm bg-[#FAFAFA] placeholder:text-[#ADADAD]"
                           {...field}
                         />
