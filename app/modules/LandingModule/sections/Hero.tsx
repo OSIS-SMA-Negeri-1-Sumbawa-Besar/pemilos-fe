@@ -94,7 +94,7 @@ export function Hero() {
                     </Link>
                     <motion.div variants={childVariants}>
                         {
-                            user ?
+                            (user?.email && !user?.hasVoted) ?
                                 <Button
                                     className="w-full"
                                     onClick={() => {

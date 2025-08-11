@@ -353,7 +353,7 @@ export const Navbar = ({ user }: { user: Session }) => {
               />
               {/* Vote Item */}
               {
-                user &&
+                (user?.email && !user?.hasVoted) &&
                 <NavbarItem
                   name="Vote"
                   index={1}
@@ -404,13 +404,47 @@ export const Navbar = ({ user }: { user: Session }) => {
                 }}
               />
             </motion.div>
-            <Button
-              variant={'default'}
-              className='mt-3'
-            >
-              <LogIn className="w-4" />
-              Login
-            </Button>
+            {/* Login Button - same logic as desktop */}
+            {
+              (location.pathname !== '/login' && !user.email) &&
+              <Button
+                variant={'default'}
+                className='mt-3'
+                onClick={() => {
+                  navigate('/login');
+                }}
+              >
+                <LogIn className="w-4" />
+                Login
+              </Button>
+            }
+            {/* User Info and Logout - same as desktop */}
+            {
+              user?.email &&
+              <motion.div
+                className="flex flex-col gap-3 mt-3"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.2 }}
+              >
+                <div className='flex flex-col'>
+                  <p className="text-sm font-semibold">
+                    {user.name}
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    {user.email?.replaceAll("@gmail.com", "")}
+                  </p>
+                </div>
+                <Button
+                  className="hover:scale-[1.05] transition duration-200 ease-in-out text-sm font-semibold"
+                  variant={'default'}
+                  onClick={handleLogout}
+                >
+                  <LogOut />
+                  Logout
+                </Button>
+              </motion.div>
+            }
           </PopoverContent>
         </Popover>
       </motion.nav>
